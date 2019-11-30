@@ -10,6 +10,11 @@ import { AppContext } from "../../AppContext";
 
 import burgerImage from "../../assets/burger.png";
 import maccasLogoImage from "../../assets/maccas.png";
+// import deniedIcon from "../../assets/denied.png";
+// import acceptedIcon from "../../assets/Accepted.png";
+
+import acceptedIcon from "../../assets/terryHappy.jpg";
+import deniedIcon from "../../assets/terryMad.png";
 
 class WaccasViewComponent extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -52,14 +57,56 @@ class WaccasViewComponent extends Component {
   // eslint-disable-next-line class-methods-use-this
   purchaseBurger = () => {
     const { appContext } = this.props;
+    const purchaseAmount = 1;
+    const categoryName = `Fast food`;
+    const purchaseItem = `$1 shitty Wacca's hamburger`;
+
     // hardcoded account id = 1, burger costs $1
     appContext.makePurchase(
+      purchaseAmount,
       1,
-      1,
-      `$1 shitty Wacca's hamburger`,
+      purchaseItem,
       `🍔`,
-      `Fast food`
+      categoryName
     );
+
+    if (purchaseAmount > appContext.accounts[0].balance) {
+      console.log(`total account limit exceeded`);
+      appContext.setNotificationData(
+        `Transaction Rejected`,
+        `Insufficient funds in main account`,
+        deniedIcon,
+        `Index`
+      );
+    }
+
+    appContext.accounts[0].pockets.forEach(pocket => {
+      pocket.categories.forEach(category => {
+        if (category.name === categoryName) {
+          const pocketSpend = appContext.getPocketSpent(
+            appContext.accounts[0].id,
+            pocket.id
+          );
+          if (pocket.limit - pocketSpend < purchaseAmount) {
+            if (pocket.limit - pocketSpend < purchaseAmount) {
+              appContext.setNotificationData(
+                `Transaction Rejected`,
+                `Insufficient funds in ${pocket.name} Pocket`,
+                deniedIcon,
+                `Index`
+              );
+            }
+          } else {
+            appContext.setNotificationData(
+              `Transaction Approved`,
+              `Purchased ${purchaseItem} for $${purchaseAmount}`,
+              acceptedIcon,
+              `Index`
+            );
+          }
+        }
+      });
+    });
   };
 
   render() {
@@ -159,5 +206,4 @@ const WaccasView = props => {
     </AppContext.Consumer>
   );
 };
-
 export default WaccasView;

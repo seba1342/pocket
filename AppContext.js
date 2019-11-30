@@ -15,7 +15,7 @@ class AppProvider extends Component {
         {
           id: 1,
           name: `Everyday Account`,
-          balance: 300,
+          balance: 1000,
           pockets: [
             {
               id: 1,
@@ -31,7 +31,7 @@ class AppProvider extends Component {
             {
               id: 2,
               name: `Partying`,
-              limit: 400,
+              limit: 422,
               spent: 5,
               period: `weekly`,
               categories: [
@@ -184,12 +184,12 @@ class AppProvider extends Component {
     const account = this.getAccountById(accountId);
     if (purchaseAmount > account.balance) {
       console.log(`total account limit exceeded`);
-      this.setNotificationData(
-        `Transaction rejected`,
-        `insufficient funds in main account`,
-        null,
-        `Index`
-      );
+      // this.setNotificationData(
+      //   `Transaction Rejected`,
+      //   `Insufficient funds in main account`,
+      //   crewsDenied,
+      //   `Index`
+      // );
       return false;
     }
     let pocketToSpendFrom;
@@ -200,13 +200,12 @@ class AppProvider extends Component {
           pocketToSpendFrom = pocket;
           if (pocket.limit - pocket.spent < purchaseAmount) {
             console.log(`pocket limit exceeded`);
-            this.setNotificationData(
-              `Transaction rejected`,
-              `insufficient funds in ${pocket.name} pocket`,
-              null,
-              `Pocket`,
-              { pocket, account }
-            );
+            // this.setNotificationData(
+            //   `Transaction Rejected`,
+            //   `Insufficient funds in ${pocket.name} Pocket`,
+            //   crewsDenied,
+            //   `Index`
+            // );
             pocketLimitExceeded = true;
           }
         }
@@ -228,13 +227,13 @@ class AppProvider extends Component {
       descriptionParam,
       `$${purchaseAmount}`
     );
-    console.log(`purchase successful`);
-    this.setNotificationData(
-      `Transaction approved`,
-      `purchased ${descriptionParam} for $${purchaseAmount}`,
-      null,
-      `Index`
-    );
+    console.log(`Purchase Successful`);
+    // this.setNotificationData(
+    //   `Transaction Approved`,
+    //   `Purchased ${descriptionParam} for $${purchaseAmount}`,
+    //   crewsAccepted,
+    //   `Index`
+    // );
     return true;
   };
 
