@@ -14,7 +14,7 @@ class AppProvider extends Component {
       accounts: [
         {
           id: 1,
-          name: `Daily Accounts`,
+          name: `Everyday Account`,
           balance: 300,
           pockets: [
             {
@@ -31,7 +31,7 @@ class AppProvider extends Component {
             {
               id: 2,
               name: `Partying`,
-              limit: 10,
+              limit: 400,
               spent: 5,
               period: `weekly`,
               categories: [
@@ -62,7 +62,7 @@ class AppProvider extends Component {
               emoji: `🍸`,
               category: `Alcohol`,
               description: `Dan Murphy's`,
-              amount: `$3000`
+              amount: `$320`
             },
             {
               emoji: `🍽`,
@@ -107,11 +107,39 @@ class AppProvider extends Component {
         title: ``,
         description: ``,
         image: ``,
-        navigateTo: ``
+        navigateTo: ``,
+        navParams: {}
       },
       notificationHidden: true
     };
   }
+
+  getPocketSpent = (accountId, pocketId) => {
+    const account = this.getAccountById(accountId);
+    let retVal = 0;
+    account.pockets.forEach(pocket => {
+      if (pocket.id === pocketId) {
+        pocket.categories.forEach(category => {
+          account.transactions.forEach(transaction => {
+            // console.log(transaction);
+            // console.log(category);
+            if (transaction.category === category.name) {
+              console.log(`transaction category = category`);
+              const amountString = transaction.amount;
+              const amountStringNoDollarSign = amountString.substring(
+                1,
+                amountString.length
+              );
+              const amountFloat = parseFloat(amountStringNoDollarSign);
+              retVal += amountFloat;
+            }
+          });
+        });
+      }
+    });
+    console.log(`returing`, retVal);
+    return retVal;
+  };
 
   // returns account, or undefined
   getAccountById = accountId => {
@@ -124,20 +152,6 @@ class AppProvider extends Component {
       }
     });
     return foundAccount;
-  };
-
-  addPocket = (accountId, accountPocket) => {
-    const { accounts } = this.state;
-
-    accounts.forEach(account => {
-      if (account.id === accountId) {
-        account.pockets.push(accountPocket);
-      }
-    });
-
-    this.setState({
-      accounts
-    });
   };
 
   logTransaction = (accountId, categoryName, emoji, description, amount) => {
@@ -190,7 +204,8 @@ class AppProvider extends Component {
               `Transaction rejected`,
               `insufficient funds in ${pocket.name} pocket`,
               null,
-              `Index`
+              `Pocket`,
+              { pocket, account }
             );
             pocketLimitExceeded = true;
           }
@@ -229,17 +244,32 @@ class AppProvider extends Component {
     });
   };
 
-  setNotificationData = (title, description, image, navigateTo) => {
+  setNotificationData = (title, description, image, navigateTo, navParams) => {
     this.setState({
       notificationData: {
         title,
         description,
         image,
-        navigateTo
+        navigateTo,
+        navParams
       }
     });
 
     this.showNotification();
+  };
+
+  addPocket = (accountId, accountPocket) => {
+    const { accounts } = this.state;
+
+    accounts.forEach(account => {
+      if (account.id === accountId) {
+        account.pockets.push(accountPocket);
+      }
+    });
+
+    this.setState({
+      accounts
+    });
   };
 
   showNotification = () => {
@@ -278,6 +308,7 @@ class AppProvider extends Component {
       <AppContext.Provider
         value={{
           addPocket: this.addPocket,
+          getPocketSpent: this.getPocketSpent,
           makePurchase: this.makePurchase,
           hideNotification: this.hideNotification,
           setHeaderTitle: this.setHeaderTitle,

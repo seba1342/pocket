@@ -23,7 +23,7 @@ class AccountItemComponent extends React.Component {
   };
 
   render() {
-    const { account, navigation } = this.props;
+    const { account, appContext, navigation } = this.props;
     const { expanded } = this.state;
 
     return (
@@ -64,6 +64,11 @@ class AccountItemComponent extends React.Component {
             expanded &&
             account.pockets.map((pocket, index) => {
               const itemKey = index;
+              const pocketSpend = appContext.getPocketSpent(
+                account.id,
+                pocket.id
+              );
+
               return (
                 <View style={[tw.mT4]} key={(account.name, pocket.name)}>
                   <View
@@ -113,7 +118,7 @@ class AccountItemComponent extends React.Component {
                             <Text
                               style={[tw.textLg, tw.text2xl, tw.mT1, tw.pT1]}
                             >
-                              ${pocket.spent}
+                              ${pocketSpend}
                             </Text>
                             <Text style={[tw.selfEnd, tw.mB2, tw.fontMedium]}>
                               /${pocket.limit}
@@ -135,7 +140,7 @@ class AccountItemComponent extends React.Component {
                       </View>
                       <ProgressBar
                         limit={pocket.limit}
-                        spent={pocket.spent}
+                        spent={pocketSpend}
                         limitColor="#222222"
                         spentColor="#E8D7AD"
                       />

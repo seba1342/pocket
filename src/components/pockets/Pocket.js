@@ -8,12 +8,14 @@ import CategoryItem from "./Category";
 import TransactionList from "../transactions/TransactionList";
 
 const PocketComponent = props => {
-  const { pocket, account, navigation } = props;
+  const { pocket, account, navigation, appContext } = props;
   const pocketCategories = pocket.categories.map(c => c.name);
 
   const transactions = account.transactions.filter(transaction =>
     pocketCategories.includes(transaction.category)
   );
+
+  const pocketSpend = appContext.getPocketSpent(account.id, pocket.id);
 
   return (
     <View>
@@ -38,7 +40,7 @@ const PocketComponent = props => {
         <View style={[tw.flexRow]}>
           <Text
             style={[tw.textXl, tw.selfEnd, tw.fontSemibold]}
-          >{`$${pocket.spent}`}</Text>
+          >{`$${pocketSpend}`}</Text>
           <Text style={[tw.selfEnd]}>{`/$${pocket.limit}`}</Text>
         </View>
       </View>
@@ -47,7 +49,7 @@ const PocketComponent = props => {
       </View>
       <ProgressBar
         limit={pocket.limit}
-        spent={pocket.spent}
+        spent={pocketSpend}
         limitColor="#222222"
         spentColor="#FFFFFF"
       />

@@ -14,7 +14,15 @@ const NotificationComponent = props => {
       <TouchableOpacity
         style={[tw.block, tw.relative, tw.z50, tw.wFull, tw.hFull]}
         onPressIn={() => {
-          navigation.navigate(notificationData.navigateTo);
+          if (notificationData.navParams) {
+            navigation.navigate(
+              notificationData.navigateTo,
+              notificationData.navParams
+            );
+          } else {
+            navigation.navigate(notificationData.navigateTo);
+          }
+
           appContext.hideNotification();
         }}
       >
