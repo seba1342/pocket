@@ -4,13 +4,14 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 import { tw } from "react-native-tailwindcss";
+import { AppContext } from "../../AppContext";
 
 import CustomButton from "../components/CustomButton";
 
-class PocketView extends Component {
+class PocketViewComponent extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam(`headerTitle`, `Preferences`)
+      title: navigation.getParam(`headerTitle`, `Pockets`)
     };
   };
 
@@ -109,5 +110,22 @@ class PocketView extends Component {
     );
   }
 }
+
+const PocketView = props => {
+  const { navigation } = props;
+
+  return (
+    <AppContext.Consumer>
+      {appContext => {
+        return (
+          <PocketViewComponent
+            appContext={appContext}
+            navigation={navigation}
+          />
+        );
+      }}
+    </AppContext.Consumer>
+  );
+};
 
 export default PocketView;

@@ -1,23 +1,14 @@
 import React from "react";
-import View from "react-native";
+import { View, Text } from "react-native";
 
-const CustomButton = props => {
+const AccountList = props => {
   const { accounts } = props;
 
-  return (
-    
-  )
+  return accounts.map(account => (
+    <View>
+      <Text>{account.name}</Text>
+    </View>
+  ));
 };
 
-CustomButton.defaultProps = {
-  onPress: () => {},
-  style: [styles.b1]
-};
-
-CustomButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  onPress: PropTypes.func,
-  style: PropTypes.instanceOf(Array)
-};
-
-export default CustomButton;
+export default AccountList;

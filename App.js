@@ -1,10 +1,10 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import { StyleSheet, Text, View } from "react-native";
 
 import AccountsView from "./src/views/AccountsView";
 import PocketView from "./src/views/PocketView";
+import AppProvider from "./AppContext";
 
 const RootStack = createStackNavigator(
   {
@@ -27,7 +27,11 @@ const RootStack = createStackNavigator(
 const AppContainer = createAppContainer(RootStack);
 
 const App = () => {
-  return <AppContainer />;
+  return (
+    <AppProvider>
+      <AppContainer />
+    </AppProvider>
+  );
 };
 
 export default App;

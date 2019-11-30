@@ -1,11 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { tw } from "react-native-tailwindcss";
+import AccountList from "../components/accounts/AccountList";
+import { AppContext } from "../../AppContext";
 
-class AccountsView extends Component {
+class AccountsViewComponent extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam(`headerTitle`, `Accounts`)
@@ -74,7 +77,6 @@ class AccountsView extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { expanded, tokens } = this.state;
 
     return (
       <View
@@ -92,5 +94,22 @@ class AccountsView extends Component {
     );
   }
 }
+
+const AccountsView = props => {
+  const { navigation } = props;
+
+  return (
+    <AppContext.Consumer>
+      {appContext => {
+        return (
+          <AccountsViewComponent
+            appContext={appContext}
+            navigation={navigation}
+          />
+        );
+      }}
+    </AppContext.Consumer>
+  );
+};
 
 export default AccountsView;
