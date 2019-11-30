@@ -36,7 +36,7 @@ class AppProvider extends Component {
               period: `weekly`,
               categories: [
                 { name: `Alcohol`, emoji: `🍸` },
-                { name: `Fast food`, emoji: `🍕` }
+                { name: `Fast food`, emoji: `🍔` }
               ]
             },
             {
@@ -83,7 +83,7 @@ class AppProvider extends Component {
               amount: `$23`
             },
             {
-              emoji: `🍕`,
+              emoji: `🍔`,
               category: `Fast food`,
               description: `Hungry Wac's`,
               amount: `$23`
@@ -153,7 +153,7 @@ class AppProvider extends Component {
 
     accounts.forEach(account => {
       if (account.id === accountId) {
-        account.transactions.push(transaction);
+        account.transactions.unshift(transaction);
       }
     });
 

@@ -57,7 +57,7 @@ class WaccasViewComponent extends Component {
       1,
       1,
       `$1 shitty Wacca's hamburger`,
-      `🍕`,
+      `🍔`,
       `Fast food`
     );
   };
