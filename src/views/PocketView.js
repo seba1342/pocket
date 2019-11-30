@@ -26,8 +26,6 @@ class PocketViewComponent extends Component {
 
   componentWillMount() {}
 
-  //
-
   expand = index => {
     const { expanded } = this.state;
 
@@ -54,8 +52,6 @@ class PocketViewComponent extends Component {
 
     appContext.setTokens(tokens);
 
-    // testing
-    // navigation.navigate(`Index`);
     navigation.navigate(`Tutorial1`);
   };
 

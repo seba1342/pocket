@@ -10,7 +10,7 @@ const AccountItemComponent = props => {
   const { account, navigation } = props;
 
   return (
-    <View>
+    <View style={[tw.p4, tw.m1, tw.roundedTLg, tw.bgTeal700, tw.text2xl]}>
       <Text>{account.name}</Text>
       <Text>{account.balance}</Text>
       <Text style={[tw.textLg]}>Transactions</Text>
