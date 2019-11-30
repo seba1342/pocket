@@ -81,8 +81,6 @@ class PocketViewComponent extends Component {
 
     const pocketData = navigation.state.params;
 
-    console.log(appContext);
-
     return (
       <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
         <Text style={[tw.text2xl]}>{`Category: ${pocketData.name}`}</Text>
@@ -94,7 +92,6 @@ class PocketViewComponent extends Component {
             }}
           >
             <Text style={[tw.text2xl]}>Go to Account</Text>
-            <Text>ASDFG {`\n`}</Text>
           </CustomButton>
         </View>
       </View>
