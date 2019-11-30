@@ -13,7 +13,7 @@ class AppProvider extends Component {
         {
           id: 1,
           name: `Daily Accounts`,
-          balance: 3,
+          balance: 300,
           pockets: [
             {
               id: 1,
