@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { View, Text } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { tw } from "react-native-tailwindcss";
 import TransactionList from "../transactions/TransactionList";
@@ -10,7 +10,7 @@ const AccountItemComponent = props => {
   const { account, navigation } = props;
 
   return (
-    <View style={[tw.p4, tw.m1, tw.roundedTLg, tw.bgTeal700, tw.text2xl]}>
+    <ScrollView style={[tw.p4, tw.m1, tw.roundedTLg, tw.bgTeal700, tw.text2xl]}>
       <Text>{account.name}</Text>
       <Text>{account.balance}</Text>
       <Text style={[tw.textLg]}>Transactions</Text>
@@ -49,7 +49,7 @@ const AccountItemComponent = props => {
             </View>
           );
         })}
-    </View>
+    </ScrollView>
   );
 };
 

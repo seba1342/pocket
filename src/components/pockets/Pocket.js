@@ -17,10 +17,10 @@ const PocketComponent = props => {
   return (
     <View>
       <View style={[tw.flexRow]}>
-        <Text
+        {/* <Text
           style={[tw.text3xl, tw.fontBold, tw.capitalize]}
-        >{`${pocket.name}`}</Text>
-        <Text style={[tw.text3xl]}> pocket</Text>
+        >{`${pocket.name}`}</Text> */}
+        {/* <Text style={[tw.text3xl]}> pocket</Text> */}
       </View>
 
       <View style={[tw.flexCol, tw.justifyBetween, tw.mT6]}>

@@ -2,10 +2,16 @@ import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
+//
+
 import AccountsView from "./src/views/AccountsView";
 import PocketView from "./src/views/PocketView";
 import AppProvider from "./AppContext";
 import WaccasView from "./src/views/WaccasView";
+
+//
+
+import Header from "./src/components/Header";
 
 const RootStack = createStackNavigator(
   {
@@ -14,7 +20,14 @@ const RootStack = createStackNavigator(
     Waccas: WaccasView
   },
   {
-    initialRouteName: `Index`
+    initialRouteName: `Index`,
+    defaultNavigationOptions: ({ navigation }) => ({
+      header: <Header navigation={navigation} />,
+      headerStyle: {
+        backgroundColor: `transparent`,
+        zIndex: 40
+      }
+    })
   }
 );
 

@@ -4,8 +4,9 @@
 
 import React, { Component } from "react";
 import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { NavigationEvents } from "react-navigation";
 import { tw } from "react-native-tailwindcss";
-import AppProvider, { AppContext } from "../../AppContext";
+import { AppContext } from "../../AppContext";
 
 import burgerImage from "../../assets/burger.png";
 import maccasLogoImage from "../../assets/maccas.png";
@@ -40,7 +41,11 @@ class WaccasViewComponent extends Component {
     };
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    const { appContext } = this.props;
+
+    appContext.setHeaderTitle(``);
+  }
 
   componentDidMount() {}
 
@@ -58,69 +63,77 @@ class WaccasViewComponent extends Component {
   };
 
   render() {
-    const { navigation, appContext } = this.props;
-    const { expanded } = this.state;
+    const { appContext } = this.props;
 
     return (
-      <View
-        style={
-          ([tw.wFull, tw.hFull, tw.relative, tw.itemsStretch, tw.p4],
-          {
-            backgroundColor: `#dd1021`
-          })
-        }
-      >
+      <>
+        <NavigationEvents onDidFocus={() => appContext.setHeaderTitle(``)} />
+
         <View
-          style={[
-            tw.wFull,
-            tw.hFull,
-            tw.itemsCenter,
-            tw.flex,
-            tw.flexCol,
-            tw.justifyBetween,
-            tw.pT8,
-            tw.pB16
-          ]}
+          style={
+            ([tw.wFull, tw.hFull, tw.relative, tw.itemsStretch, tw.p4, tw.pT20],
+            {
+              backgroundColor: `#dd1021`
+            })
+          }
         >
-          <Image
-            style={[
-              { width: 270, height: 250, backgroundColor: `transparent` },
-              this.styles.rotateImage
-            ]}
-            source={maccasLogoImage}
-          />
-          <Image
-            style={{ width: 282, height: 200, backgroundColor: `transparent` }}
-            source={burgerImage}
-          />
           <View
             style={[
-              tw.bgWhite,
-              tw.p4,
-              tw.mT8,
-              tw.rounded,
+              tw.wFull,
+              tw.hFull,
+              tw.itemsCenter,
               tw.flex,
               tw.flexCol,
               tw.justifyBetween,
-              tw.m8,
-              {
-                width: 360
-              }
+              tw.pT8,
+              tw.pB16
             ]}
           >
-            <Text style={[tw.fontBold, tw.text4xl, tw.pY2]}>
-              Today&apos;s deal
-            </Text>
-            <Text style={[tw.fontSemibold, tw.pY2]}>$1 shitty hamburgers!</Text>
-            <TouchableOpacity
-              onPress={this.purchaseBurger}
-              style={[this.styles.buyNowButton, tw.itemsCenter, tw.pY2]}
+            <Image
+              style={[
+                { width: 270, height: 250, backgroundColor: `transparent` },
+                this.styles.rotateImage
+              ]}
+              source={maccasLogoImage}
+            />
+            <Image
+              style={{
+                width: 282,
+                height: 200,
+                backgroundColor: `transparent`
+              }}
+              source={burgerImage}
+            />
+            <View
+              style={[
+                tw.bgWhite,
+                tw.p4,
+                tw.mT8,
+                tw.rounded,
+                tw.flex,
+                tw.flexCol,
+                tw.justifyBetween,
+                tw.m8,
+                {
+                  width: 360
+                }
+              ]}
             >
-              <Text>Buy now!</Text>
-            </TouchableOpacity>
+              <Text style={[tw.fontBold, tw.text4xl, tw.pY2]}>
+                Today&apos;s deal
+              </Text>
+              <Text style={[tw.fontSemibold, tw.pY2]}>
+                $1 shitty hamburgers!
+              </Text>
+              <TouchableOpacity
+                style={[this.styles.buyNowButton, tw.itemsCenter, tw.pY2]}
+              >
+                <Text>Buy now!</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
+      </>
     );
   }
 }

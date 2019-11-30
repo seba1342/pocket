@@ -3,6 +3,7 @@
 
 import React, { Component } from "react";
 import { View } from "react-native";
+import { NavigationEvents } from "react-navigation";
 import { tw } from "react-native-tailwindcss";
 import { AppContext } from "../../AppContext";
 import Pocket from "../components/pockets/Pocket";
@@ -23,7 +24,11 @@ class PocketViewComponent extends Component {
     };
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    const { appContext } = this.props;
+
+    appContext.setHeaderTitle(`Pocket`);
+  }
 
   expand = index => {
     const { expanded } = this.state;
@@ -71,25 +76,32 @@ class PocketViewComponent extends Component {
   //
 
   render() {
-    const { navigation } = this.props;
+    const { appContext, navigation } = this.props;
     const { expanded, tokens } = this.state;
 
     const { pocket, account } = navigation.state.params;
 
     return (
-      <View
-        style={[
-          tw.wFull,
-          tw.hFull,
-          tw.relative,
-          tw.flex,
-          tw.itemsStretch,
-          tw.p4,
-          tw.bgCream
-        ]}
-      >
-        <Pocket pocket={pocket} account={account} />
-      </View>
+      <>
+        <NavigationEvents
+          onWillFocus={() => appContext.setHeaderTitle(`${pocket.name} pocket`)}
+        />
+
+        <View
+          style={[
+            tw.wFull,
+            tw.hFull,
+            tw.relative,
+            tw.flex,
+            tw.itemsStretch,
+            tw.p4,
+            tw.bgCream,
+            tw.pT16
+          ]}
+        >
+          <Pocket pocket={pocket} account={account} />
+        </View>
+      </>
     );
   }
 }

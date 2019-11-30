@@ -11,9 +11,4 @@ const CustomButton = props => {
   );
 };
 
-CustomButton.defaultProps = {
-  onPress: () => {}
-  // style: [styles.b1]
-};
-
 export default CustomButton;

@@ -5,6 +5,8 @@ import React, { Component, createContext } from "react";
 export const AppContext = createContext({});
 
 class AppProvider extends Component {
+  notificationInterval;
+
   constructor() {
     super();
 
@@ -99,7 +101,15 @@ class AppProvider extends Component {
           name: `Savings`,
           balance: 15000
         }
-      ]
+      ],
+      headerTitle: ``,
+      notificationData: {
+        title: ``,
+        description: ``,
+        image: ``,
+        navigateTo: ``
+      },
+      notificationHidden: true
     };
   }
 
@@ -184,16 +194,71 @@ class AppProvider extends Component {
     return true;
   };
 
+  setHeaderTitle = headerTitle => {
+    this.setState({
+      headerTitle
+    });
+  };
+
+  setNotificationData = (title, description, image, navigateTo) => {
+    this.setState({
+      notificationData: {
+        title,
+        description,
+        image,
+        navigateTo
+      }
+    });
+
+    this.showNotification();
+  };
+
+  showNotification = () => {
+    const { notificationHidden } = this.state;
+
+    if (notificationHidden) {
+      this.setState({
+        notificationHidden: false
+      });
+
+      this.notificationInterval = setInterval(() => {
+        this.setState({
+          notificationHidden: true
+        });
+      }, 5000);
+    }
+  };
+
+  hideNotification = () => {
+    this.setState({
+      notificationHidden: true
+    });
+    clearInterval(this.notificationInterval);
+  };
+
   render() {
     const { children } = this.props;
-    const { accounts } = this.state;
+    const {
+      accounts,
+      headerTitle,
+      notificationData,
+      notificationHidden
+    } = this.state;
 
     return (
       <AppContext.Provider
         value={{
           addPocket: this.addPocket,
           makePurchase: this.makePurchase,
-          accounts
+          hideNotification: this.hideNotification,
+          setHeaderTitle: this.setHeaderTitle,
+          setNotificationData: this.setNotificationData,
+          showNotification: this.showNotification,
+          //
+          accounts,
+          headerTitle,
+          notificationData,
+          notificationHidden
         }}
       >
         {children}
