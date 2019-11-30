@@ -1,16 +1,16 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import { tw } from 'react-native-tailwindcss';
+import React, { Component } from "react";
+import { Text, View } from "react-native";
+import { tw } from "react-native-tailwindcss";
 
-import CustomButton from '../components/CustomButton';
+import CustomButton from "../components/CustomButton";
 
 class PocketView extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('headerTitle', 'Preferences')
+      title: navigation.getParam(`headerTitle`, `Preferences`)
     };
   };
 
@@ -55,7 +55,7 @@ class PocketView extends Component {
 
     // testing
     // navigation.navigate(`Index`);
-    navigation.navigate('Tutorial1');
+    navigation.navigate(`Tutorial1`);
   };
 
   toggle = token => {
