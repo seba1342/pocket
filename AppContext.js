@@ -9,12 +9,9 @@ class AppProvider extends Component {
 
     this.state = {
       accounts: [
+        { id: 1, name: `Daily Accounts`, balance: 1000, pockets: [] },
         {
-          name: `Daily Accounts`,
-          balance: 1000,
-          pockets: []
-        },
-        {
+          id: 2,
           name: `Savings`,
           balance: 15000,
           pockets: []
@@ -23,6 +20,20 @@ class AppProvider extends Component {
     };
   }
 
+  addPocket = (accountId, accountPocket) => {
+    const { accounts } = this.state;
+
+    accounts.forEach(account => {
+      if (account.id === accountId) {
+        account.pockets.push(accountPocket);
+      }
+    });
+
+    this.setState({
+      accounts
+    });
+  };
+
   render() {
     const { children } = this.props;
     const { accounts } = this.state;
@@ -30,7 +41,7 @@ class AppProvider extends Component {
     return (
       <AppContext.Provider
         value={{
-          // FUNCTIONS
+          addPocket: this.addPocket,
           accounts
         }}
       >
