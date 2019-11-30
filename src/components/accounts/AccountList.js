@@ -4,11 +4,19 @@ import { View, Text } from "react-native";
 const AccountList = props => {
   const { accounts } = props;
 
-  return accounts.map(account => (
+  if (accounts) {
+    return accounts.map(account => (
+      <View>
+        <Text>{account.name}</Text>
+      </View>
+    ));
+  }
+
+  return (
     <View>
-      <Text>{account.name}</Text>
+      <Text>Hey</Text>
     </View>
-  ));
+  );
 };
 
 export default AccountList;

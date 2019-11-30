@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { TouchableOpacity } from "react-native";
 
 const CustomButton = props => {
@@ -13,14 +12,8 @@ const CustomButton = props => {
 };
 
 CustomButton.defaultProps = {
-  onPress: () => {},
-  style: [styles.b1]
-};
-
-CustomButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  onPress: PropTypes.func,
-  style: PropTypes.instanceOf(Array)
+  onPress: () => {}
+  // style: [styles.b1]
 };
 
 export default CustomButton;
