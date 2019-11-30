@@ -103,11 +103,13 @@ class AppProvider extends Component {
     });
   };
 
-  logTransaction = (categoryName, emoji, description, amount) => {
-    const { transactions } = this.state;
+  logTransaction = (account, categoryName, emoji, description, amount) => {
+    const { transactions } = account;
+    console.log(`transactions`, transactions);
     const transaction = { emoji, category: categoryName, description, amount };
     transactions.push(transaction);
-    this.setState({ transactions });
+    account.transactions = transactions;
+    this.setState({ account });
   };
 
   makePurchase = (
@@ -145,6 +147,7 @@ class AppProvider extends Component {
       pocketToSpendFrom.spent += purchaseAmount;
     }
     this.logTransaction(
+      account,
       purchaseCategoryName,
       emojiParam,
       descriptionParam,
