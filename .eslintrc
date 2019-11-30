@@ -18,6 +18,7 @@
     "jsx-a11y/media-has-caption": 0,
     "prettier/prettier": ["error"],
     "no-param-reassign": 0,
+    "react/prop-types": 0,
     "quotes": [2, "backtick"],
     "radix": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
