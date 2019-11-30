@@ -3,7 +3,8 @@ module.exports = {
     extend: {
       colors: {
         white: `#ffffff`,
-        black: `#000000`
+        black: `#222222`,
+        cream: `#E8D7AD`
       }
     }
   },
