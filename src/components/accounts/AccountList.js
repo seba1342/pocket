@@ -1,21 +1,37 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { AppContext } from "../../../AppContext";
+import AccountItem from "./AccountItem";
 
-const AccountList = props => {
+const AccountListComponent = props => {
   const { accounts } = props;
 
-  if (accounts) {
-    return accounts.map(account => (
+  return (
+    accounts &&
+    accounts.map(account => (
       <View>
-        <Text>{account.name}</Text>
+        <AccountItem account={account} />
       </View>
-    ));
-  }
+    ))
+  );
+};
+
+const AccountList = props => {
+  const { navigation } = props;
+  const { accounts } = props;
 
   return (
-    <View>
-      <Text>Hey</Text>
-    </View>
+    <AppContext.Consumer>
+      {appContext => {
+        return (
+          <AccountListComponent
+            appContext={appContext}
+            navigation={navigation}
+            accounts={accounts}
+          />
+        );
+      }}
+    </AppContext.Consumer>
   );
 };
 
