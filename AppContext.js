@@ -32,7 +32,7 @@ class AppProvider extends Component {
               id: 2,
               name: `Partying`,
               limit: 10,
-              spent: 0,
+              spent: 5,
               period: `weekly`,
               categories: [
                 { name: `Alcohol`, emoji: `🍸` },
@@ -43,7 +43,7 @@ class AppProvider extends Component {
               id: 3,
               name: `Survival`,
               limit: 250,
-              spent: 0,
+              spent: 75,
               period: `monthly`,
               categories: [
                 { name: `Transport`, emoji: `🚗` },

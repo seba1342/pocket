@@ -13,7 +13,7 @@ const NotificationComponent = props => {
     !appContext.notificationHidden && (
       <TouchableOpacity
         style={[tw.block, tw.relative, tw.z50, tw.wFull, tw.hFull]}
-        onPress={() => {
+        onPressIn={() => {
           navigation.navigate(notificationData.navigateTo);
           appContext.hideNotification();
         }}
@@ -30,7 +30,8 @@ const NotificationComponent = props => {
             tw.flex,
             tw.flexRow,
             tw.z50,
-            tw.pT8
+            tw.pT8,
+            tw.mT1
           ]}
         >
           <View
@@ -39,7 +40,6 @@ const NotificationComponent = props => {
               tw.hFull,
               tw.absolute,
               tw.bgWhite,
-              tw.opacity75,
               tw.z10,
               tw.mT8,
               tw.roundedBLg
@@ -48,7 +48,12 @@ const NotificationComponent = props => {
           <View style={[tw.flex, tw.flexRow, tw.itemsCenter, tw.z20]}>
             <Image
               source={notificationData.image}
-              style={[tw.w8, tw.h8, tw.m4]}
+              style={[
+                tw.w8,
+                tw.h8,
+                tw.m4,
+                { transform: [{ rotate: `180deg` }] }
+              ]}
             />
 
             <View style={[tw.flex, tw.flexCol]}>

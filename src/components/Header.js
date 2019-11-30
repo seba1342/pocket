@@ -28,7 +28,15 @@ class HeaderComponent extends Component {
         )}
 
         <View
-          style={[tw.wFull, tw.absolute, tw.pT8, tw.pL4, tw.flex, tw.flexRow]}
+          style={[
+            tw.wFull,
+            tw.absolute,
+            tw.pT8,
+            tw.pL4,
+            tw.mT4,
+            tw.flex,
+            tw.flexRow
+          ]}
         >
           {navigation.state.routeName !== `Index` ? (
             <>

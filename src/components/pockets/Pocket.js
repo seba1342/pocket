@@ -2,6 +2,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { tw } from "react-native-tailwindcss";
+import ProgressBar from "../ProgessBar";
 import { AppContext } from "../../../AppContext";
 import CategoryItem from "./Category";
 import TransactionList from "../transactions/TransactionList";
@@ -44,6 +45,12 @@ const PocketComponent = props => {
       <View>
         <Text style={[tw.selfEnd]}>{`resets ${pocket.period}`}</Text>
       </View>
+      <ProgressBar
+        limit={pocket.limit}
+        spent={pocket.spent}
+        limitColor="#222222"
+        spentColor="#FFFFFF"
+      />
       <TransactionList transactions={transactions} navigation={navigation} />
       {/* <View>
         <ProgressBar>{`resets ${pocket.period}`}</ProgressBar>

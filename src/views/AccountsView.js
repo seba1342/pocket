@@ -99,7 +99,8 @@ class AccountsViewComponent extends Component {
             tw.flex,
             tw.itemsStretch,
             tw.bgCream,
-            tw.pT20,
+            tw.minHFull,
+            tw.pT24,
             tw.pB20
           ]}
         >
@@ -108,10 +109,15 @@ class AccountsViewComponent extends Component {
           <CustomButton
             style={[tw.justifyEnd, { position: `absolute`, bottom: 0 }]}
             onPress={() => {
-              navigation.navigate(`Waccas`);
+              appContext.setNotificationData(
+                `Buy low, sell high`,
+                `Wonald WcWondald Wants to see your WeeWee`,
+                waccasLogo,
+                `Waccas`
+              );
             }}
           >
-            <Text style={[tw.text2xl, tw.pB8]}>Go to Waccas</Text>
+            <Text style={[tw.pL4, tw.pB8, tw.opacity25]}>𝒘accas</Text>
           </CustomButton>
         </ScrollView>
       </>
