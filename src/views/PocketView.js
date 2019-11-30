@@ -91,19 +91,13 @@ class PocketViewComponent extends Component {
         ]}
       >
         <Text>Gday M8</Text>
-        <View style={[tw.flex1, tw.bgWhite]}>
+        <View style={[tw.bgWhite]}>
           <CustomButton
-            style={[
-              tw.wFull,
-              tw.flex,
-              tw.flexRow,
-              tw.itemsCenter,
-              tw.justifyBetween,
-              tw.pY5,
-              tw.pX3
-            ]}
+            onPress={() => {
+              navigation.navigate(`Index`);
+            }}
           >
-            <Text style={[tw.text2xl]}>Go to screen</Text>
+            <Text style={[tw.text2xl]}>Go to Account</Text>
           </CustomButton>
         </View>
       </View>

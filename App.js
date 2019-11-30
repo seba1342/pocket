@@ -13,14 +13,6 @@ const RootStack = createStackNavigator(
   },
   {
     initialRouteName: `Index`
-    // initialRouteName: `Preferences`,
-    // defaultNavigationOptions: ({ navigation }) => ({
-    //   header: <Header navigation={navigation} />,
-    //   headerStyle: {
-    //     backgroundColor: `transparent`,
-    //     zIndex: 999
-    //   }
-    // })
   }
 );
 

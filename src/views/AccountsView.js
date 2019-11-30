@@ -3,10 +3,13 @@
 /* eslint-disable react/prop-types */
 
 import React, { Component } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import { tw } from "react-native-tailwindcss";
-import AccountList from "../components/accounts/AccountList";
+
 import { AppContext } from "../../AppContext";
+
+import AccountList from "../components/accounts/AccountList";
+import CustomButton from "../components/CustomButton";
 
 class AccountsViewComponent extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -56,7 +59,7 @@ class AccountsViewComponent extends Component {
 
     // testing
     // navigation.navigate(`Index`);
-    navigation.navigate(`Tutorial1`);
+    // navigation.navigate(`Tutorial1`);
   };
 
   toggle = token => {
@@ -79,17 +82,18 @@ class AccountsViewComponent extends Component {
     const { navigation } = this.props;
 
     return (
-      <View
-        style={[
-          tw.wFull,
-          tw.hFull,
-          tw.relative,
-          tw.flex,
-          tw.itemsStretch,
-          tw.bgPeach
-        ]}
-      >
+      <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
         <AccountList />
+
+        <View style={[tw.bgWhite]}>
+          <CustomButton
+            onPress={() => {
+              navigation.navigate(`Pocket`);
+            }}
+          >
+            <Text style={[tw.text2xl]}>Go to Pocket</Text>
+          </CustomButton>
+        </View>
       </View>
     );
   }
