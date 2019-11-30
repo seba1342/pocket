@@ -33,19 +33,20 @@ class AccountItemComponent extends React.Component {
             tw.p4,
             tw.m2,
             tw.mX4,
-            tw.roundedTLg,
             tw.bgWhite,
             tw.text2xl,
-            tw.rounded,
+            tw.roundedLg,
             tw.shadowXl
           ]}
         >
           <View style={[tw.flex, tw.flexRow, tw.justifyBetween, tw.wFull]}>
-            <View style={[tw.flexRow]}>
+            <View style={[tw.flexCol]}>
               <Text style={[tw.text3xl, tw.mR8]}>{account.name}</Text>
+              <Text style={[tw.textSm, tw.fontLight, tw.mT1, tw.opacity75]}>
+                1040-4000-132
+              </Text>
             </View>
-
-            <View style={[tw.flexRow, tw.justifyEnd]}>
+            <View style={[tw.flexRow, tw.selfCenter]}>
               <Text style={[tw.text3xl, tw.fontMedium, tw.mR2]}>
                 ${account.balance}
               </Text>
@@ -70,23 +71,23 @@ class AccountItemComponent extends React.Component {
               );
 
               return (
-                <View style={[tw.mT4]} key={(account.name, pocket.name)}>
-                  <View
-                    key={`activityItem-${itemKey}`}
-                    style={[
-                      tw.p2,
-                      tw.pY8,
-                      tw.m1,
-                      tw.bgWhite,
-                      tw.rounded,
-                      tw.shadowMd
-                    ]}
-                  >
-                    <TouchableOpacity
-                      key={pocket.id}
-                      onPress={() => {
-                        navigation.navigate(`Pocket`, { pocket, account });
-                      }}
+                <TouchableOpacity
+                  key={pocket.id}
+                  onPress={() => {
+                    navigation.navigate(`Pocket`, { pocket, account });
+                  }}
+                >
+                  <View style={[tw.mT4]} key={(account.name, pocket.name)}>
+                    <View
+                      key={`activityItem-${itemKey}`}
+                      style={[
+                        tw.p2,
+                        tw.pY8,
+                        tw.m1,
+                        tw.bgWhite,
+                        tw.rounded,
+                        tw.shadowMd
+                      ]}
                     >
                       <View
                         style={[
@@ -144,9 +145,9 @@ class AccountItemComponent extends React.Component {
                         limitColor="#222222"
                         spentColor="#E8D7AD"
                       />
-                    </TouchableOpacity>
+                    </View>
                   </View>
-                </View>
+                </TouchableOpacity>
               );
             })}
         </View>

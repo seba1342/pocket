@@ -89,7 +89,7 @@ class PocketViewComponent extends Component {
         <ScrollView
           contentContainerStyle={[
             tw.wFull,
-            tw.hFull,
+            tw.minHFull,
             tw.relative,
             tw.flex,
             tw.itemsStretch,
