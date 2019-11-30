@@ -2,6 +2,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import { tw } from "react-native-tailwindcss";
 import { AppContext } from "../../../AppContext";
 
 const AccountItemComponent = props => {
@@ -13,16 +14,35 @@ const AccountItemComponent = props => {
       <Text>{account.name}</Text>
       <Text>{account.balance}</Text>
       {account.pockets &&
-        account.pockets.map(pocket => (
-          <TouchableHighlight
-            key={pocket.id}
-            onPress={() => {
-              navigation.navigate(`Pocket`, pocket);
-            }}
-          >
-            <Text>{pocket.name}</Text>
-          </TouchableHighlight>
-        ))}
+        account.pockets.map((pocket, index) => {
+          const itemKey = index;
+          return (
+            <View
+              key={`activityItem-${itemKey}`}
+              style={[tw.p2, tw.pY8, tw.m1, tw.rounded, tw.bgBlack]}
+            >
+              <TouchableHighlight
+                key={pocket.id}
+                onPress={() => {
+                  navigation.navigate(`Pocket`, pocket);
+                }}
+              >
+                <View
+                  style={[
+                    tw.wFull,
+                    tw.flex,
+                    tw.flexRow,
+                    tw.justifyBetween,
+                    tw.itemsStart
+                  ]}
+                >
+                  <Text style={[tw.text2xl, tw.textWhite]}>{pocket.name}</Text>
+                  {/* <Text style={[tw.text2xl, tw.textWhite]}>v</Text> */}
+                </View>
+              </TouchableHighlight>
+            </View>
+          );
+        })}
     </View>
   );
 };

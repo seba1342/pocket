@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { View } from "react-native";
 import { AppContext } from "../../../AppContext";
@@ -8,11 +9,14 @@ const AccountListComponent = props => {
 
   return (
     accounts &&
-    accounts.map(account => (
-      <View>
-        <AccountItem navigation={navigation} account={account} />
-      </View>
-    ))
+    accounts.map((account, index) => {
+      const accountListKey = index;
+      return (
+        <View key={accountListKey}>
+          <AccountItem navigation={navigation} account={account} />
+        </View>
+      );
+    })
   );
 };
 
