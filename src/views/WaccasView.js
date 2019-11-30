@@ -71,7 +71,7 @@ class WaccasViewComponent extends Component {
 
         <View
           style={
-            ([tw.wFull, tw.hFull, tw.relative, tw.itemsStretch, tw.p4, tw.pT20],
+            ([tw.wFull, tw.flex, tw.relative, tw.itemsStretch, tw.p4, tw.pT20],
             {
               backgroundColor: `#dd1021`
             })
@@ -91,7 +91,11 @@ class WaccasViewComponent extends Component {
           >
             <Image
               style={[
-                { width: 270, height: 250, backgroundColor: `transparent` },
+                {
+                  width: 270,
+                  height: 250,
+                  backgroundColor: `transparent`
+                },
                 this.styles.rotateImage
               ]}
               source={maccasLogoImage}
@@ -127,6 +131,7 @@ class WaccasViewComponent extends Component {
               </Text>
               <TouchableOpacity
                 style={[this.styles.buyNowButton, tw.itemsCenter, tw.pY2]}
+                onPress={this.purchaseBurger}
               >
                 <Text>Buy now!</Text>
               </TouchableOpacity>
