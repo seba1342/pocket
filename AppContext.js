@@ -103,7 +103,20 @@ class AppProvider extends Component {
     });
   };
 
-  makePurchase = (accountId, purchaseAmount, purchaseCategoryName) => {
+  logTransaction = (categoryName, emoji, description, amount) => {
+    const { transactions } = this.state;
+    const transaction = { emoji, category: categoryName, description, amount };
+    transactions.push(transaction);
+    this.setState({ transactions });
+  };
+
+  makePurchase = (
+    accountId,
+    purchaseAmount,
+    descriptionParam,
+    emojiParam,
+    purchaseCategoryName
+  ) => {
     const account = this.getAccountById(accountId);
     if (purchaseAmount > account.balance) {
       console.log(`total account limit exceeded`);
@@ -131,6 +144,12 @@ class AppProvider extends Component {
     if (pocketToSpendFrom !== undefined) {
       pocketToSpendFrom.spent += purchaseAmount;
     }
+    this.logTransaction(
+      purchaseCategoryName,
+      emojiParam,
+      descriptionParam,
+      `$${purchaseAmount}`
+    );
     console.log(`purchase successful`);
     return true;
   };

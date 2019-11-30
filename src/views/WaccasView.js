@@ -48,7 +48,13 @@ class WaccasViewComponent extends Component {
   purchaseBurger = () => {
     const { appContext } = this.props;
     // hardcoded account id = 1, burger costs $1
-    appContext.makePurchase(1, 1, `Fast food`);
+    appContext.makePurchase(
+      1,
+      1,
+      `$1 shitty Wacca's hamburger`,
+      `🍕`,
+      `Fast food`
+    );
   };
 
   render() {
