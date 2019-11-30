@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { AppContext } from "../../AppContext";
+import { AppContext } from "../../../AppContext";
 import TransactionItem from "./TransactionItem";
 
 const TransactionListComponent = props => {

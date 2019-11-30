@@ -3,7 +3,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { tw } from "react-native-tailwindcss";
-import TransactionList from "../TransactionList";
+import TransactionList from "../transactions/TransactionList";
 import { AppContext } from "../../../AppContext";
 
 const AccountItemComponent = props => {

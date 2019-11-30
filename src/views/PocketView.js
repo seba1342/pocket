@@ -81,15 +81,6 @@ class PocketViewComponent extends Component {
       <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
         <Text style={[tw.text2xl]}>{`Category: ${pocketData.name}`}</Text>
         <Text style={[tw.text2xl]}>{`Limit: ${pocketData.limit}`}</Text>
-        <View style={[tw.bgWhite]}>
-          <CustomButton
-            onPress={() => {
-              navigation.navigate(`Index`);
-            }}
-          >
-            <Text style={[tw.text2xl]}>Go to Account</Text>
-          </CustomButton>
-        </View>
       </View>
     );
   }
