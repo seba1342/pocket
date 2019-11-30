@@ -22,8 +22,7 @@ class AppProvider extends Component {
         {
           id: 2,
           name: `Savings`,
-          balance: 15000,
-          pockets: []
+          balance: 15000
         }
       ]
     };
