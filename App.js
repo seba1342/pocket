@@ -2,6 +2,8 @@ import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
+import { tw } from "react-native-tailwindcss";
+
 //
 
 import AccountsView from "./src/views/AccountsView";

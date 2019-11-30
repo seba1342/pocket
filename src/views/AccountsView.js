@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 
 import React, { Component } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import { tw } from "react-native-tailwindcss";
 
@@ -92,44 +92,28 @@ class AccountsViewComponent extends Component {
           onWillFocus={() => appContext.setHeaderTitle(`Your accounts`)}
         />
 
-        <View
-          style={[
+        <ScrollView
+          contentContainerStyle={[
             tw.wFull,
-            tw.hFull,
             tw.relative,
             tw.flex,
             tw.itemsStretch,
-            tw.pT20
+            tw.bgCream,
+            tw.pT20,
+            tw.pB20
           ]}
         >
           <AccountList navigation={navigation} accounts={accounts} />
 
-          <View style={[tw.bgWhite]}>
-            <CustomButton
-              onPress={() => {
-                navigation.navigate(`Waccas`);
-              }}
-            >
-              <Text style={[tw.text2xl]}>Go to Waccas</Text>
-            </CustomButton>
-          </View>
-
-          <TouchableOpacity
-            onPress={() =>
-              appContext.setNotificationData(
-                `BUY CONSUME BUY CONSUME`,
-                `QUick bro i made good deal for u`,
-                waccasLogo,
-                `Waccas`
-              )
-            }
+          <CustomButton
+            style={[tw.justifyEnd, { position: `absolute`, bottom: 0 }]}
+            onPress={() => {
+              navigation.navigate(`Waccas`);
+            }}
           >
-            <Image
-              source={waccasLogo}
-              style={[tw.absolute, tw.bottom0, tw.left0, tw.w8, tw.h8]}
-            />
-          </TouchableOpacity>
-        </View>
+            <Text style={[tw.text2xl, tw.pB8]}>Go to Waccas</Text>
+          </CustomButton>
+        </ScrollView>
       </>
     );
   }

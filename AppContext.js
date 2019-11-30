@@ -140,13 +140,24 @@ class AppProvider extends Component {
     });
   };
 
-  logTransaction = (account, categoryName, emoji, description, amount) => {
-    const { transactions } = account;
-    console.log(`transactions`, transactions);
+  logTransaction = (accountId, categoryName, emoji, description, amount) => {
+    // const account = this.getAccountById(accountId);
+    // const { transactions } = account;
+    const { accounts } = this.state;
+
+    // console.log(`transactions`, transactions);
+
     const transaction = { emoji, category: categoryName, description, amount };
-    transactions.push(transaction);
-    account.transactions = transactions;
-    this.setState({ account });
+    // transactions.push(transaction);
+    // account.transactions = transactions;
+
+    accounts.forEach(account => {
+      if (account.id === accountId) {
+        account.transactions.push(transaction);
+      }
+    });
+
+    this.setState({ accounts });
   };
 
   makePurchase = (
@@ -184,7 +195,7 @@ class AppProvider extends Component {
       pocketToSpendFrom.spent += purchaseAmount;
     }
     this.logTransaction(
-      account,
+      accountId,
       purchaseCategoryName,
       emojiParam,
       descriptionParam,

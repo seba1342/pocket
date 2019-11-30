@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 
 import React, { Component } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import { tw } from "react-native-tailwindcss";
 import { AppContext } from "../../AppContext";
@@ -77,7 +77,6 @@ class PocketViewComponent extends Component {
 
   render() {
     const { appContext, navigation } = this.props;
-    const { expanded, tokens } = this.state;
 
     const { pocket, account } = navigation.state.params;
 
@@ -87,8 +86,8 @@ class PocketViewComponent extends Component {
           onWillFocus={() => appContext.setHeaderTitle(`${pocket.name} pocket`)}
         />
 
-        <View
-          style={[
+        <ScrollView
+          contentContainerStyle={[
             tw.wFull,
             tw.hFull,
             tw.relative,
@@ -100,7 +99,7 @@ class PocketViewComponent extends Component {
           ]}
         >
           <Pocket pocket={pocket} account={account} />
-        </View>
+        </ScrollView>
       </>
     );
   }

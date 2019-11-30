@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { View } from "react-native";
+import { tw } from "react-native-tailwindcss";
+
 import { AppContext } from "../../../AppContext";
 import AccountItem from "./AccountItem";
 
@@ -12,7 +14,7 @@ const AccountListComponent = props => {
     accounts.map((account, index) => {
       const accountListKey = index;
       return (
-        <View key={accountListKey}>
+        <View styles={[tw.pB16, tw.relative, tw.block]} key={accountListKey}>
           <AccountItem navigation={navigation} account={account} />
         </View>
       );
