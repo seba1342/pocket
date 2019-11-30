@@ -8,11 +8,14 @@ const TransactionListComponent = props => {
 
   return (
     transactions &&
-    transactions.map(transaction => (
-      <View>
-        <TransactionItem navigation={navigation} transaction={transaction} />
-      </View>
-    ))
+    transactions.map((transaction, index) => {
+      const indexKey = index;
+      return (
+        <View key={indexKey}>
+          <TransactionItem navigation={navigation} transaction={transaction} />
+        </View>
+      );
+    })
   );
 };
 
