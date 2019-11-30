@@ -14,7 +14,7 @@ import CustomButton from "../components/CustomButton";
 class AccountsViewComponent extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam(`headerTitle`, `Accounts`)
+      title: `Your accounts`
     };
   };
 
@@ -28,8 +28,6 @@ class AccountsViewComponent extends Component {
   }
 
   componentWillMount() {}
-
-  //
 
   expand = index => {
     const { expanded } = this.state;
@@ -71,8 +69,6 @@ class AccountsViewComponent extends Component {
       tokens
     });
   };
-
-  //
 
   render() {
     const { navigation, appContext } = this.props;

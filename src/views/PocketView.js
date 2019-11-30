@@ -26,8 +26,6 @@ class PocketViewComponent extends Component {
 
   componentWillMount() {}
 
-  //
-
   expand = index => {
     const { expanded } = this.state;
 
@@ -54,8 +52,6 @@ class PocketViewComponent extends Component {
 
     appContext.setTokens(tokens);
 
-    // testing
-    // navigation.navigate(`Index`);
     navigation.navigate(`Tutorial1`);
   };
 
@@ -81,22 +77,10 @@ class PocketViewComponent extends Component {
 
     const pocketData = navigation.state.params;
 
-    console.log(appContext);
-
     return (
       <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
         <Text style={[tw.text2xl]}>{`Category: ${pocketData.name}`}</Text>
         <Text style={[tw.text2xl]}>{`Limit: ${pocketData.limit}`}</Text>
-        <View style={[tw.bgWhite]}>
-          <CustomButton
-            onPress={() => {
-              navigation.navigate(`Index`);
-            }}
-          >
-            <Text style={[tw.text2xl]}>Go to Account</Text>
-            <Text>ASDFG {`\n`}</Text>
-          </CustomButton>
-        </View>
       </View>
     );
   }

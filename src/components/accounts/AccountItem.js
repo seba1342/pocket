@@ -3,16 +3,23 @@ import React from "react";
 import { View, Text } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { tw } from "react-native-tailwindcss";
+import TransactionList from "../transactions/TransactionList";
 import { AppContext } from "../../../AppContext";
 
 const AccountItemComponent = props => {
   const { account, navigation } = props;
-  console.log(navigation);
 
   return (
-    <View>
+    <View style={[tw.p4, tw.m1, tw.roundedTLg, tw.bgTeal700, tw.text2xl]}>
       <Text>{account.name}</Text>
       <Text>{account.balance}</Text>
+      <Text style={[tw.textLg]}>Transactions</Text>
+      {account.transactions && (
+        <TransactionList
+          navigation={navigation}
+          transactions={account.transactions}
+        />
+      )}
       {account.pockets &&
         account.pockets.map((pocket, index) => {
           const itemKey = index;
@@ -37,7 +44,6 @@ const AccountItemComponent = props => {
                   ]}
                 >
                   <Text style={[tw.text2xl, tw.textWhite]}>{pocket.name}</Text>
-                  {/* <Text style={[tw.text2xl, tw.textWhite]}>v</Text> */}
                 </View>
               </TouchableHighlight>
             </View>

@@ -17,6 +17,26 @@ class AppProvider extends Component {
             { id: 1, name: `Partying`, limit: 1000 },
             { id: 2, name: `Eating out`, limit: 500 },
             { id: 3, name: `Groceries`, limit: 250 }
+          ],
+          transactions: [
+            {
+              emoji: `🎉`,
+              category: `Partying`,
+              description: `Rats Bar`,
+              amount: `$50`
+            },
+            {
+              emoji: `🎉`,
+              category: `Eating out`,
+              description: `Waccas`,
+              amount: `$5`
+            },
+            {
+              emoji: `🎉`,
+              category: `Groceries`,
+              description: `Woolies`,
+              amount: `$23`
+            }
           ]
         },
         {
