@@ -80,16 +80,7 @@ class PocketViewComponent extends Component {
     const { expanded, tokens } = this.state;
 
     return (
-      <View
-        style={[
-          tw.wFull,
-          tw.hFull,
-          tw.relative,
-          tw.flex,
-          tw.itemsStretch,
-          tw.bgPeach
-        ]}
-      >
+      <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
         <Text>Gday M8</Text>
         <View style={[tw.bgWhite]}>
           <CustomButton
