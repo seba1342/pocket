@@ -87,15 +87,19 @@ class AccountsViewComponent extends Component {
       <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
         <AccountList navigation={navigation} accounts={accounts} />
 
-        <View style={[tw.bgWhite]}>
+        {/* <View style={[tw.bgWhite]}>
           <CustomButton
             onPress={() => {
-              navigation.navigate(`Pocket`);
+              navigation.navigate(`Pocket`, {
+                id: 1,
+                limit: 1000,
+                name: `Partying`
+              });
             }}
           >
             <Text style={[tw.text2xl]}>Go to Pocket</Text>
           </CustomButton>
-        </View>
+        </View> */}
       </View>
     );
   }
