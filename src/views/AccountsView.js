@@ -79,11 +79,13 @@ class AccountsViewComponent extends Component {
   //
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, appContext } = this.props;
+
+    const { accounts } = appContext;
 
     return (
       <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
-        <AccountList />
+        <AccountList accounts={accounts} />
 
         <View style={[tw.bgWhite]}>
           <CustomButton

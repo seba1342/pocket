@@ -9,7 +9,16 @@ class AppProvider extends Component {
 
     this.state = {
       accounts: [
-        { id: 1, name: `Daily Accounts`, balance: 1000, pockets: [] },
+        {
+          id: 1,
+          name: `Daily Accounts`,
+          balance: 1000,
+          pockets: [
+            { id: 1, name: `Partying`, limit: 1000 },
+            { id: 1, name: `Eating out`, limit: 500 },
+            { id: 1, name: `Groceries`, limit: 250 }
+          ]
+        },
         {
           id: 2,
           name: `Savings`,
