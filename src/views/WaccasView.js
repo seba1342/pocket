@@ -5,7 +5,7 @@
 import React, { Component } from "react";
 import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { tw } from "react-native-tailwindcss";
-import { AppContext } from "../../AppContext";
+import AppProvider, { AppContext } from "../../AppContext";
 
 import burgerImage from "../../assets/burger.png";
 import maccasLogoImage from "../../assets/maccas.png";
@@ -42,8 +42,17 @@ class WaccasViewComponent extends Component {
 
   componentWillMount() {}
 
+  componentDidMount() {}
+
+  // eslint-disable-next-line class-methods-use-this
+  purchaseBurger = () => {
+    const { appContext } = this.props;
+    // hardcoded account id = 1, burger costs $1
+    appContext.makePurchase(1, 1, `Fast food`);
+  };
+
   render() {
-    const { navigation } = this.props;
+    const { navigation, appContext } = this.props;
     const { expanded } = this.state;
 
     return (
@@ -98,6 +107,7 @@ class WaccasViewComponent extends Component {
             </Text>
             <Text style={[tw.fontSemibold, tw.pY2]}>$1 shitty hamburgers!</Text>
             <TouchableOpacity
+              onPress={this.purchaseBurger}
               style={[this.styles.buyNowButton, tw.itemsCenter, tw.pY2]}
             >
               <Text>Buy now!</Text>

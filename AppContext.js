@@ -13,11 +13,38 @@ class AppProvider extends Component {
         {
           id: 1,
           name: `Daily Accounts`,
-          balance: 1000,
+          balance: 3,
           pockets: [
-            { id: 1, name: `Partying`, limit: 1000, spent: 0 },
-            { id: 2, name: `Eating out`, limit: 500, spent: 0 },
-            { id: 3, name: `Groceries`, limit: 250, spent: 0 }
+            {
+              id: 1,
+              name: `Lifestyle`,
+              limit: 1000,
+              spent: 0,
+              categories: [
+                { name: `Eating out`, emoji: `🍽` },
+                { name: `Shopping`, emoji: `🛍` }
+              ]
+            },
+            {
+              id: 2,
+              name: `Partying`,
+              limit: 10,
+              spent: 0,
+              categories: [
+                { name: `Alcohol`, emoji: `🍸` },
+                { name: `Fast food`, emoji: `🍕` }
+              ]
+            },
+            {
+              id: 3,
+              name: `Survival`,
+              limit: 250,
+              spent: 0,
+              categories: [
+                { name: `Transport`, emoji: `🚗` },
+                { name: `Groceries`, emoji: `🛒` }
+              ]
+            }
           ],
           transactions: [
             {
@@ -27,15 +54,15 @@ class AppProvider extends Component {
               amount: `$50`
             },
             {
-              emoji: `🎉`,
+              emoji: `🍽`,
               category: `Eating out`,
               description: `Waccas`,
               amount: `$5`
             },
             {
-              emoji: `🎉`,
-              category: `Groceries`,
-              description: `Woolies`,
+              emoji: `🛍`,
+              category: `Shopping`,
+              description: `Christmas gifts`,
               amount: `$23`
             }
           ]
@@ -49,16 +76,18 @@ class AppProvider extends Component {
     };
   }
 
-  getAccountById(accountId) {
+  // returns account, or undefined
+  getAccountById = accountId => {
     const { accounts } = this.state;
     // eslint-disable-next-line consistent-return
+    let foundAccount;
     accounts.forEach(account => {
       if (account.id === accountId) {
-        return account;
+        foundAccount = account;
       }
     });
-    return false;
-  }
+    return foundAccount;
+  };
 
   addPocket = (accountId, accountPocket) => {
     const { accounts } = this.state;
@@ -74,27 +103,35 @@ class AppProvider extends Component {
     });
   };
 
-  makePayment = (accountId, purchaseAmount, purchaseCategory) => {
+  makePurchase = (accountId, purchaseAmount, purchaseCategoryName) => {
     const account = this.getAccountById(accountId);
     if (purchaseAmount > account.balance) {
+      console.log(`total account limit exceeded`);
       return false;
     }
     let pocketToSpendFrom;
+    let pocketLimitExceeded = false;
     account.pockets.forEach(pocket => {
-      pocket.forEach(category => {
-        if (category.name === purchaseCategory.name) {
+      pocket.categories.forEach(category => {
+        if (category.name === purchaseCategoryName) {
           pocketToSpendFrom = pocket;
           if (pocket.limit - pocket.spent < purchaseAmount) {
-            return false;
+            console.log(`pocket limit exceeded`);
+            pocketLimitExceeded = true;
           }
         }
       });
     });
+    if (pocketLimitExceeded) {
+      console.log(`exiting function cause pocket limit exceeded`);
+      return false;
+    }
     // at this point, the transaction is all good
     account.balance -= purchaseAmount;
     if (pocketToSpendFrom !== undefined) {
       pocketToSpendFrom.spent += purchaseAmount;
     }
+    console.log(`purchase successful`);
     return true;
   };
 
@@ -106,6 +143,7 @@ class AppProvider extends Component {
       <AppContext.Provider
         value={{
           addPocket: this.addPocket,
+          makePurchase: this.makePurchase,
           accounts
         }}
       >
