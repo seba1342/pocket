@@ -76,12 +76,17 @@ class PocketViewComponent extends Component {
   //
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, appContext } = this.props;
     const { expanded, tokens } = this.state;
+
+    const pocketData = navigation.state.params;
+
+    console.log(appContext);
 
     return (
       <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
-        <Text>Gday M8</Text>
+        <Text style={[tw.text2xl]}>{`Category: ${pocketData.name}`}</Text>
+        <Text style={[tw.text2xl]}>{`Limit: ${pocketData.limit}`}</Text>
         <View style={[tw.bgWhite]}>
           <CustomButton
             onPress={() => {
@@ -89,6 +94,7 @@ class PocketViewComponent extends Component {
             }}
           >
             <Text style={[tw.text2xl]}>Go to Account</Text>
+            <Text>ASDFG {`\n`}</Text>
           </CustomButton>
         </View>
       </View>
