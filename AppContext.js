@@ -14,7 +14,15 @@ class AppProvider extends Component {
           name: `Daily Accounts`,
           balance: 1000,
           pockets: [
-            { id: 1, name: `Partying`, limit: 1000 },
+            {
+              id: 1,
+              name: `Lifestyle`,
+              limit: 1000,
+              categories: [
+                { name: `Eating out`, emoji: `🍽` },
+                { name: `Shopping`, emoji: `🛍` }
+              ]
+            },
             { id: 2, name: `Eating out`, limit: 500 },
             { id: 3, name: `Groceries`, limit: 250 }
           ],
@@ -26,15 +34,15 @@ class AppProvider extends Component {
               amount: `$50`
             },
             {
-              emoji: `🎉`,
+              emoji: `🍽`,
               category: `Eating out`,
               description: `Waccas`,
               amount: `$5`
             },
             {
-              emoji: `🎉`,
-              category: `Groceries`,
-              description: `Woolies`,
+              emoji: `🛍`,
+              category: `Shopping`,
+              description: `Christmas gifts`,
               amount: `$23`
             }
           ]
