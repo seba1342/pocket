@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { Component, createContext } from "react";
 
@@ -14,9 +15,9 @@ class AppProvider extends Component {
           name: `Daily Accounts`,
           balance: 1000,
           pockets: [
-            { id: 1, name: `Partying`, limit: 1000 },
-            { id: 2, name: `Eating out`, limit: 500 },
-            { id: 3, name: `Groceries`, limit: 250 }
+            { id: 1, name: `Partying`, limit: 1000, spent: 0 },
+            { id: 2, name: `Eating out`, limit: 500, spent: 0 },
+            { id: 3, name: `Groceries`, limit: 250, spent: 0 }
           ],
           transactions: [
             {
@@ -48,6 +49,17 @@ class AppProvider extends Component {
     };
   }
 
+  getAccountById(accountId) {
+    const { accounts } = this.state;
+    // eslint-disable-next-line consistent-return
+    accounts.forEach(account => {
+      if (account.id === accountId) {
+        return account;
+      }
+    });
+    return false;
+  }
+
   addPocket = (accountId, accountPocket) => {
     const { accounts } = this.state;
 
@@ -60,6 +72,30 @@ class AppProvider extends Component {
     this.setState({
       accounts
     });
+  };
+
+  makePayment = (accountId, purchaseAmount, purchaseCategory) => {
+    const account = this.getAccountById(accountId);
+    if (purchaseAmount > account.balance) {
+      return false;
+    }
+    let pocketToSpendFrom;
+    account.pockets.forEach(pocket => {
+      pocket.forEach(category => {
+        if (category.name === purchaseCategory.name) {
+          pocketToSpendFrom = pocket;
+          if (pocket.limit - pocket.spent < purchaseAmount) {
+            return false;
+          }
+        }
+      });
+    });
+    // at this point, the transaction is all good
+    account.balance -= purchaseAmount;
+    if (pocketToSpendFrom !== undefined) {
+      pocketToSpendFrom.spent += purchaseAmount;
+    }
+    return true;
   };
 
   render() {
