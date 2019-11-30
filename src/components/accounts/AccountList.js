@@ -4,13 +4,13 @@ import { AppContext } from "../../../AppContext";
 import AccountItem from "./AccountItem";
 
 const AccountListComponent = props => {
-  const { accounts } = props;
+  const { accounts, navigation } = props;
 
   return (
     accounts &&
     accounts.map(account => (
       <View>
-        <AccountItem account={account} />
+        <AccountItem navigation={navigation} account={account} />
       </View>
     ))
   );

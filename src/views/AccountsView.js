@@ -85,7 +85,7 @@ class AccountsViewComponent extends Component {
 
     return (
       <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
-        <AccountList accounts={accounts} />
+        <AccountList navigation={navigation} accounts={accounts} />
 
         <View style={[tw.bgWhite]}>
           <CustomButton
