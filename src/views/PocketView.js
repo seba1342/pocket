@@ -90,6 +90,21 @@ class PocketView extends Component {
         ]}
       >
         <Text>Gday M8</Text>
+        <View style={[tw.flex1, tw.bgWhite]}>
+          <CustomButton
+            style={[
+              tw.wFull,
+              tw.flex,
+              tw.flexRow,
+              tw.itemsCenter,
+              tw.justifyBetween,
+              tw.pY5,
+              tw.pX3
+            ]}
+          >
+            <Text style={[tw.text2xl]}>Go to screen</Text>
+          </CustomButton>
+        </View>
       </View>
     );
   }
