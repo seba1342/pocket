@@ -33,10 +33,9 @@ class AccountItemComponent extends React.Component {
             tw.p4,
             tw.m2,
             tw.mX4,
-            tw.roundedTLg,
             tw.bgWhite,
             tw.text2xl,
-            tw.rounded,
+            tw.roundedLg,
             tw.shadowXl
           ]}
         >
