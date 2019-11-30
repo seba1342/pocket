@@ -82,6 +82,16 @@ class AccountsViewComponent extends Component {
     return (
       <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
         <AccountList navigation={navigation} accounts={accounts} />
+
+        <View style={[tw.bgWhite]}>
+          <CustomButton
+            onPress={() => {
+              navigation.navigate(`Waccas`);
+            }}
+          >
+            <Text style={[tw.text2xl]}>Go to Waccas</Text>
+          </CustomButton>
+        </View>
       </View>
     );
   }
