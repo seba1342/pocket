@@ -1,9 +1,9 @@
 const State = {
   accounts: [],
   categories: {
-    Food: 'Food',
-    Alcohol: 'Alcohol'
+    Food: `Food`,
+    Alcohol: `Alcohol`
   }
-}
+};
 
-export default State
+export default State;

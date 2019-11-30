@@ -1,30 +1,30 @@
 export default class Account {
   constructor(name, balance, pockets) {
-    this.name = name
-    this.balance = balance
-    this.pockets = pockets
+    this.name = name;
+    this.balance = balance;
+    this.pockets = pockets;
   }
 
   getName() {
-    return this.name
+    return this.name;
   }
 
   getBalance() {
-    return this.balance
+    return this.balance;
   }
 
   getPockets() {
-    return this.pockets
+    return this.pockets;
   }
 
   getPocket(pocketId) {
-    return this.pockets.find((pocket) => {
-      pocket.id === pocketId
-    })
+    return this.pockets.find(pocket => {
+      pocket.id === pocketId;
+    });
   }
 
   addPocket(pocket) {
-    this.pockets.push(pocket)
+    this.pockets.push(pocket);
   }
 
   updatePocket(pocket) {}
