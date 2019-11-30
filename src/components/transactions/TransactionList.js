@@ -1,5 +1,6 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
+import { tw } from "react-native-tailwindcss";
 import { AppContext } from "../../../AppContext";
 import TransactionItem from "./TransactionItem";
 
@@ -7,15 +8,23 @@ const TransactionListComponent = props => {
   const { transactions, navigation } = props;
 
   return (
-    transactions &&
-    transactions.map((transaction, index) => {
-      const indexKey = index;
-      return (
-        <View key={indexKey}>
-          <TransactionItem navigation={navigation} transaction={transaction} />
-        </View>
-      );
-    })
+    <View style={[tw.shadow2xl, tw.bgWhite, tw.roundedSm, tw.p4, tw.mT6]}>
+      <Text
+        style={[tw.textXl, tw.mB4, tw.fontSemibold]}
+      >{`Purchases (${transactions.length})`}</Text>
+      {transactions &&
+        transactions.map((transaction, index) => {
+          const indexKey = index;
+          return (
+            <View key={indexKey}>
+              <TransactionItem
+                navigation={navigation}
+                transaction={transaction}
+              />
+            </View>
+          );
+        })}
+    </View>
   );
 };
 

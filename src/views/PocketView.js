@@ -2,11 +2,10 @@
 /* eslint-disable react/prop-types */
 
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { tw } from "react-native-tailwindcss";
 import { AppContext } from "../../AppContext";
-
-import CustomButton from "../components/CustomButton";
+import Pocket from "../components/pockets/Pocket";
 
 class PocketViewComponent extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -72,15 +71,23 @@ class PocketViewComponent extends Component {
   //
 
   render() {
-    const { navigation, appContext } = this.props;
+    const { navigation } = this.props;
     const { expanded, tokens } = this.state;
 
-    const pocketData = navigation.state.params;
+    const { pocket, account } = navigation.state.params;
 
     return (
-      <View style={[tw.wFull, tw.hFull, tw.relative, tw.flex, tw.itemsStretch]}>
-        <Text style={[tw.text2xl]}>{`Category: ${pocketData.name}`}</Text>
-        <Text style={[tw.text2xl]}>{`Limit: ${pocketData.limit}`}</Text>
+      <View
+        style={[
+          tw.wFull,
+          tw.hFull,
+          tw.relative,
+          tw.flex,
+          tw.itemsStretch,
+          tw.p4
+        ]}
+      >
+        <Pocket pocket={pocket} account={account} />
       </View>
     );
   }

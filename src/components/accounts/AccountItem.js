@@ -31,7 +31,7 @@ const AccountItemComponent = props => {
               <TouchableHighlight
                 key={pocket.id}
                 onPress={() => {
-                  navigation.navigate(`Pocket`, pocket);
+                  navigation.navigate(`Pocket`, { pocket, account });
                 }}
               >
                 <View

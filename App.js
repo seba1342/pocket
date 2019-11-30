@@ -10,7 +10,7 @@ import WaccasView from "./src/views/WaccasView";
 const RootStack = createStackNavigator(
   {
     Index: AccountsView,
-    Pocket: PocketView, 
+    Pocket: PocketView,
     Waccas: WaccasView
   },
   {
