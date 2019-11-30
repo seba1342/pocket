@@ -170,6 +170,12 @@ class AppProvider extends Component {
     const account = this.getAccountById(accountId);
     if (purchaseAmount > account.balance) {
       console.log(`total account limit exceeded`);
+      this.setNotificationData(
+        `Transaction rejected`,
+        `insufficient funds in main account`,
+        null,
+        `Index`
+      );
       return false;
     }
     let pocketToSpendFrom;
@@ -180,6 +186,12 @@ class AppProvider extends Component {
           pocketToSpendFrom = pocket;
           if (pocket.limit - pocket.spent < purchaseAmount) {
             console.log(`pocket limit exceeded`);
+            this.setNotificationData(
+              `Transaction rejected`,
+              `insufficient funds in ${pocket.name} pocket`,
+              null,
+              `Index`
+            );
             pocketLimitExceeded = true;
           }
         }
@@ -202,6 +214,12 @@ class AppProvider extends Component {
       `$${purchaseAmount}`
     );
     console.log(`purchase successful`);
+    this.setNotificationData(
+      `Transaction approved`,
+      `purchased ${descriptionParam} for $${purchaseAmount}`,
+      null,
+      `Index`
+    );
     return true;
   };
 
