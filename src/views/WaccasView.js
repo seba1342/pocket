@@ -80,7 +80,8 @@ class WaccasViewComponent extends Component {
       );
     }
 
-    appContext.accounts[0].pockets.forEach(pocket => {
+    const account = appContext.accounts[0];
+    account.pockets.forEach(pocket => {
       pocket.categories.forEach(category => {
         if (category.name === categoryName) {
           const pocketSpend = appContext.getPocketSpent(
@@ -93,7 +94,8 @@ class WaccasViewComponent extends Component {
                 `Transaction Rejected`,
                 `Insufficient funds in ${pocket.name} Pocket`,
                 deniedIcon,
-                `Index`
+                `Pocket`,
+                { pocket, account }
               );
             }
           } else {

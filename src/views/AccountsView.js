@@ -13,8 +13,6 @@ import AccountList from "../components/accounts/AccountList";
 import CustomButton from "../components/CustomButton";
 import Notification from "../components/Notification";
 
-//
-
 import waccasLogo from "../../assets/maccas.png";
 
 class AccountsViewComponent extends Component {

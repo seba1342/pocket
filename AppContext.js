@@ -31,7 +31,7 @@ class AppProvider extends Component {
             {
               id: 2,
               name: `Partying`,
-              limit: 422,
+              limit: 402,
               spent: 5,
               period: `weekly`,
               categories: [
@@ -124,7 +124,6 @@ class AppProvider extends Component {
             // console.log(transaction);
             // console.log(category);
             if (transaction.category === category.name) {
-              console.log(`transaction category = category`);
               const amountString = transaction.amount;
               const amountStringNoDollarSign = amountString.substring(
                 1,
@@ -137,7 +136,6 @@ class AppProvider extends Component {
         });
       }
     });
-    console.log(`returing`, retVal);
     return retVal;
   };
 
@@ -198,7 +196,10 @@ class AppProvider extends Component {
       pocket.categories.forEach(category => {
         if (category.name === purchaseCategoryName) {
           pocketToSpendFrom = pocket;
-          if (pocket.limit - pocket.spent < purchaseAmount) {
+          if (
+            pocket.limit - this.getPocketSpent(accountId, pocket.id) <
+            purchaseAmount
+          ) {
             console.log(`pocket limit exceeded`);
             // this.setNotificationData(
             //   `Transaction Rejected`,
@@ -220,6 +221,7 @@ class AppProvider extends Component {
     if (pocketToSpendFrom !== undefined) {
       pocketToSpendFrom.spent += purchaseAmount;
     }
+    console.log(`logging transaction`);
     this.logTransaction(
       accountId,
       purchaseCategoryName,
