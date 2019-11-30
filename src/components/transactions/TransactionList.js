@@ -8,11 +8,11 @@ const TransactionListComponent = props => {
   const { transactions, navigation } = props;
 
   return (
-    <View style={[tw.shadow2xl, tw.bgWhite, tw.roundedSm, tw.p4, tw.mT6]}>
+    <View style={[tw.shadow2xl, tw.bgWhite, tw.roundedLg, tw.p4, tw.mT6]}>
       <Text
         style={[tw.textXl, tw.mB4, tw.fontSemibold]}
       >{`Purchases (${transactions.length})`}</Text>
-      {transactions &&
+      {transactions && transactions.length ? (
         transactions.map((transaction, index) => {
           const indexKey = index;
           return (
@@ -23,7 +23,12 @@ const TransactionListComponent = props => {
               />
             </View>
           );
-        })}
+        })
+      ) : (
+        <View>
+          <Text>No transactions from this pocket.</Text>
+        </View>
+      )}
     </View>
   );
 };
