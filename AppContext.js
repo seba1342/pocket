@@ -20,6 +20,7 @@ class AppProvider extends Component {
               name: `Lifestyle`,
               limit: 1000,
               spent: 0,
+              period: `weekly`,
               categories: [
                 { name: `Eating out`, emoji: `🍽` },
                 { name: `Shopping`, emoji: `🛍` }
@@ -30,6 +31,7 @@ class AppProvider extends Component {
               name: `Partying`,
               limit: 10,
               spent: 0,
+              period: `weekly`,
               categories: [
                 { name: `Alcohol`, emoji: `🍸` },
                 { name: `Fast food`, emoji: `🍕` }
@@ -40,6 +42,7 @@ class AppProvider extends Component {
               name: `Survival`,
               limit: 250,
               spent: 0,
+              period: `monthly`,
               categories: [
                 { name: `Transport`, emoji: `🚗` },
                 { name: `Groceries`, emoji: `🛒` }
@@ -48,21 +51,45 @@ class AppProvider extends Component {
           ],
           transactions: [
             {
-              emoji: `🎉`,
-              category: `Partying`,
+              emoji: `🍸`,
+              category: `Alcohol`,
               description: `Rats Bar`,
               amount: `$50`
             },
             {
+              emoji: `🍸`,
+              category: `Alcohol`,
+              description: `Dan Murphy's`,
+              amount: `$3000`
+            },
+            {
               emoji: `🍽`,
-              category: `Eating out`,
+              category: `Fast food`,
               description: `Waccas`,
               amount: `$5`
             },
             {
               emoji: `🛍`,
               category: `Shopping`,
-              description: `Christmas gifts`,
+              description: `K-mart`,
+              amount: `$23`
+            },
+            {
+              emoji: `🛍`,
+              category: `Shopping`,
+              description: `Target`,
+              amount: `$23`
+            },
+            {
+              emoji: `🍕`,
+              category: `Fast food`,
+              description: `Hungry Wac's`,
+              amount: `$23`
+            },
+            {
+              emoji: `🍽`,
+              category: `Eating out`,
+              description: `Nando's`,
               amount: `$23`
             }
           ]
