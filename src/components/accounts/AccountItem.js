@@ -71,31 +71,23 @@ class AccountItemComponent extends React.Component {
               );
 
               return (
-                <TouchableOpacity
-                  key={pocket.id}
-                  onPress={() => {
-                    navigation.navigate(`Pocket`, { pocket, account });
-                  }}
-                >
-                  <View style={[tw.mT4]} key={(account.name, pocket.name)}>
-                    <View
-                      key={`activityItem-${itemKey}`}
-                      style={[
-                        tw.p2,
-                        tw.pY8,
-                        tw.m1,
-                        tw.bgWhite,
-                        tw.rounded,
-                        tw.shadowMd
-                      ]}
-                    >
+                <View key={itemKey}>
+                  <TouchableOpacity
+                    key={pocket.id}
+                    onPress={() => {
+                      navigation.navigate(`Pocket`, { pocket, account });
+                    }}
+                  >
+                    <View style={[tw.mT4]} key={(account.name, pocket.name)}>
                       <View
+                        key={`activityItem-${itemKey}`}
                         style={[
-                          tw.flexRow,
+                          tw.p2,
+                          tw.pY8,
+                          tw.m1,
                           tw.bgWhite,
-                          tw.roundedSm,
-                          tw.justifyBetween,
-                          tw.pX4
+                          tw.rounded,
+                          tw.shadowMd
                         ]}
                       >
                         <View style={[tw.flexRow]}>
@@ -114,42 +106,88 @@ class AccountItemComponent extends React.Component {
                             {pocket.name}
                           </Text>
                         </View>
-                        <View>
-                          <View style={[tw.flex, tw.flexRow]}>
+                        <View style={[tw.flex, tw.flexRow]}>
+                          {/* <View style={[tw.flex, tw.flexRow]}>
                             <Text
                               style={[tw.textLg, tw.text2xl, tw.mT1, tw.pT1]}
                             >
                               ${pocketSpend}
                             </Text>
-                            <Text style={[tw.selfEnd, tw.mB2, tw.fontMedium]}>
-                              /${pocket.limit}
-                            </Text>
-                          </View>
-                          <View style={[tw.flex, tw.flexRow]}>
                             <Text
                               style={[
-                                tw.selfEnd,
-                                tw.mB2,
-                                tw.fontMedium,
-                                tw.textXs
+                                tw.textLg,
+                                tw.pT1,
+                                tw.text2xl,
+                                tw.mT1,
+                                tw.fontMedium
                               ]}
                             >
-                              resets weekly
+                              {pocket.name}
                             </Text>
+                          </View> */}
+                          <View>
+                            <View style={[tw.flex, tw.flexRow]}>
+                              <Text
+                                style={[tw.textLg, tw.text2xl, tw.mT1, tw.pT1]}
+                              >
+                                ${pocket.spent}
+                              </Text>
+                              <Text style={[tw.selfEnd, tw.mB2, tw.fontMedium]}>
+                                /${pocket.limit}
+                              </Text>
+                            </View>
+                            <View style={[tw.flex, tw.flexRow]}>
+                              <Text
+                                style={[
+                                  tw.selfEnd,
+                                  tw.mB2,
+                                  tw.fontMedium,
+                                  tw.textXs
+                                ]}
+                              >
+                                resets weekly
+                              </Text>
+                            </View>
                           </View>
                         </View>
+                        <ProgressBar
+                          limit={pocket.limit}
+                          spent={pocketSpend}
+                          limitColor="#222222"
+                          spentColor="#E8D7AD"
+                        />
                       </View>
-                      <ProgressBar
-                        limit={pocket.limit}
-                        spent={pocketSpend}
-                        limitColor="#222222"
-                        spentColor="#E8D7AD"
-                      />
                     </View>
-                  </View>
-                </TouchableOpacity>
+                  </TouchableOpacity>
+                </View>
               );
             })}
+          {account.pockets && (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate(`AddPocket`);
+              }}
+            >
+              <View
+                style={[
+                  tw.p4,
+                  tw.mT3,
+                  tw.w1_2,
+                  tw.bgWhite,
+                  tw.selfEnd,
+                  tw.shadowLg,
+                  tw.roundedFull,
+                  tw.flexRow,
+                  tw.justifyBetween
+                ]}
+              >
+                <Text style={[tw.fontSemibold]}>Add new pocket</Text>
+                <View>
+                  <Icon weight name="plus" size={16} color="#000" />
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
         </View>
       </TouchableOpacity>
     );

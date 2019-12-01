@@ -95,7 +95,7 @@ class PocketViewComponent extends Component {
             tw.itemsStretch,
             tw.p4,
             tw.bgCream,
-            tw.pT16
+            tw.pT20
           ]}
         >
           <Pocket pocket={pocket} account={account} />

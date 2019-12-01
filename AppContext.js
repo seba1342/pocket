@@ -15,7 +15,7 @@ class AppProvider extends Component {
         {
           id: 1,
           name: `Everyday Account`,
-          balance: 1000,
+          balance: 999,
           pockets: [
             {
               id: 1,
@@ -44,7 +44,7 @@ class AppProvider extends Component {
               name: `Survival`,
               limit: 250,
               spent: 75,
-              period: `monthly`,
+              period: `weekly`,
               categories: [
                 { name: `Transport`, emoji: `🚗` },
                 { name: `Groceries`, emoji: `🛒` }
@@ -101,6 +101,15 @@ class AppProvider extends Component {
           name: `Savings`,
           balance: 15000
         }
+      ],
+      categories: [
+        { name: `Fast food`, emoji: `🍕` },
+        { name: `Eating out`, emoji: `🍽` },
+        { name: `Shopping`, emoji: `🛍` },
+        { name: `Alcohol`, emoji: `🍸` },
+        { name: `Groceries`, emoji: `🛒` },
+        { name: `Travel`, emoji: `🚀` },
+        { name: `Holidays`, emoji: `🏝` }
       ],
       headerTitle: ``,
       notificationData: {
@@ -273,6 +282,12 @@ class AppProvider extends Component {
     });
   };
 
+  createPocket = pocket => {
+    const { accounts } = this.state;
+    accounts[0].pockets.push(pocket);
+    this.setState({ accounts });
+  };
+
   showNotification = () => {
     const { notificationHidden } = this.state;
 
@@ -300,6 +315,7 @@ class AppProvider extends Component {
     const { children } = this.props;
     const {
       accounts,
+      categories,
       headerTitle,
       notificationData,
       notificationHidden
@@ -315,8 +331,10 @@ class AppProvider extends Component {
           setHeaderTitle: this.setHeaderTitle,
           setNotificationData: this.setNotificationData,
           showNotification: this.showNotification,
+          createPocket: this.createPocket,
           //
           accounts,
+          categories,
           headerTitle,
           notificationData,
           notificationHidden

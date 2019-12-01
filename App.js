@@ -10,6 +10,7 @@ import AccountsView from "./src/views/AccountsView";
 import PocketView from "./src/views/PocketView";
 import AppProvider from "./AppContext";
 import WaccasView from "./src/views/WaccasView";
+import AddPocketView from "./src/views/AddPocketView";
 
 //
 
@@ -19,7 +20,8 @@ const RootStack = createStackNavigator(
   {
     Index: AccountsView,
     Pocket: PocketView,
-    Waccas: WaccasView
+    Waccas: WaccasView,
+    AddPocket: AddPocketView
   },
   {
     initialRouteName: `Index`,

@@ -6,6 +6,7 @@ import React, { Component } from "react";
 import { Image, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import { tw } from "react-native-tailwindcss";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import { AppContext } from "../../AppContext";
 
@@ -108,8 +109,8 @@ class AccountsViewComponent extends Component {
             style={[tw.justifyEnd, { position: `absolute`, bottom: 0 }]}
             onPress={() => {
               appContext.setNotificationData(
-                `Buy low, sell high`,
-                `Wonald WcWondald Wants to see your WeeWee`,
+                `$1 Burgers!!!`,
+                `Amazing new deal at Waccas. $1 burger!`,
                 waccasLogo,
                 `Waccas`
               );

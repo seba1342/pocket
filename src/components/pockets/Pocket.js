@@ -11,6 +11,8 @@ const PocketComponent = props => {
   const { pocket, account, navigation, appContext } = props;
   const pocketCategories = pocket.categories.map(c => c.name);
 
+  console.log(`pocketCategories`, pocketCategories);
+
   const transactions = account.transactions.filter(transaction =>
     pocketCategories.includes(transaction.category)
   );
