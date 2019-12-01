@@ -21,43 +21,23 @@ class AppProvider extends Component {
               id: 1,
               name: `Lifestyle`,
               limit: 150,
-              spent: 0,
+              spent: 69,
               period: `weekly`,
               categories: [
-                { name: `Eating out`, emoji: `🍽` },
+                { name: `Eating out`, emoji: `💃` },
                 { name: `Shopping`, emoji: `🛍` }
               ]
             },
             {
               id: 2,
-              name: `Partying`,
+              name: `Transport`,
               limit: 10,
-              spent: 5,
+              spent: 0,
               period: `weekly`,
-              categories: [
-                { name: `Alcohol`, emoji: `🍸` },
-                { name: `Fast food`, emoji: `🍔` }
-              ]
-            },
-            {
-              id: 3,
-              name: `Survival`,
-              limit: 250,
-              spent: 75,
-              period: `weekly`,
-              categories: [
-                { name: `Transport`, emoji: `🚗` },
-                { name: `Groceries`, emoji: `🛒` }
-              ]
+              categories: [{ name: `Travel`, emoji: `🚀` }]
             }
           ],
           transactions: [
-            {
-              emoji: `🍽`,
-              category: `Fast food`,
-              description: `Waccas`,
-              amount: `$5`
-            },
             {
               emoji: `🛍`,
               category: `Shopping`,

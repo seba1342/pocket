@@ -41,7 +41,7 @@ class AccountItemComponent extends React.Component {
         >
           <View style={[tw.flex, tw.flexRow, tw.justifyBetween, tw.wFull]}>
             <View style={[tw.flexCol]}>
-              <Text style={[tw.text3xl, tw.mR8]}>{account.name}</Text>
+              <Text style={[tw.text3xl, tw.mR4]}>{account.name}</Text>
               <Text style={[tw.textSm, tw.fontLight, tw.mT1, tw.opacity75]}>
                 1040-4000-132
               </Text>
@@ -51,12 +51,14 @@ class AccountItemComponent extends React.Component {
                 ${account.balance}
               </Text>
               {account.pockets && (
-                <Icon
-                  style={[tw.mT2, tw.mL1]}
-                  name={expanded ? `chevron-up` : `chevron-down`}
-                  size={15}
-                  color="#000"
-                />
+                <View style={[tw.pR5]}>
+                  <Icon
+                    style={[tw.mT2, tw.mL1]}
+                    name={expanded ? `chevron-up` : `chevron-down`}
+                    size={15}
+                    color="#000"
+                  />
+                </View>
               )}
             </View>
           </View>
@@ -90,28 +92,17 @@ class AccountItemComponent extends React.Component {
                           tw.shadowMd
                         ]}
                       >
-                        <View style={[tw.flexRow]}>
-                          <Text style={[tw.mR3, tw.text4xl]}>
-                            {pocket.categories[0].emoji}
-                          </Text>
-                          <Text
-                            style={[
-                              tw.textLg,
-                              tw.pT1,
-                              tw.text2xl,
-                              tw.mT1,
-                              tw.fontMedium
-                            ]}
-                          >
-                            {pocket.name}
-                          </Text>
-                        </View>
-                        <View style={[tw.flex, tw.flexRow]}>
-                          {/* <View style={[tw.flex, tw.flexRow]}>
-                            <Text
-                              style={[tw.textLg, tw.text2xl, tw.mT1, tw.pT1]}
-                            >
-                              ${pocketSpend}
+                        <View
+                          style={[
+                            tw.flexRow,
+                            tw.flex,
+                            tw.flexRow,
+                            tw.justifyBetween
+                          ]}
+                        >
+                          <View style={[tw.flexRow]}>
+                            <Text style={[tw.mR3, tw.text4xl]}>
+                              {pocket.categories[0].emoji}
                             </Text>
                             <Text
                               style={[
@@ -124,7 +115,7 @@ class AccountItemComponent extends React.Component {
                             >
                               {pocket.name}
                             </Text>
-                          </View> */}
+                          </View>
                           <View>
                             <View style={[tw.flex, tw.flexRow]}>
                               <Text
@@ -149,6 +140,27 @@ class AccountItemComponent extends React.Component {
                               </Text>
                             </View>
                           </View>
+                        </View>
+
+                        <View>
+                          {/* <View style={[tw.flex, tw.flexRow]}>
+                            <Text
+                              style={[tw.textLg, tw.text2xl, tw.mT1, tw.pT1]}
+                            >
+                              ${pocketSpend}
+                            </Text>
+                            <Text
+                              style={[
+                                tw.textLg,
+                                tw.pT1,
+                                tw.text2xl,
+                                tw.mT1,
+                                tw.fontMedium
+                              ]}
+                            >
+                              {pocket.name}
+                            </Text>
+                          </View> */}
                         </View>
                         <ProgressBar
                           limit={pocket.limit}

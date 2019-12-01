@@ -37,6 +37,7 @@ class AddPocketViewComponent extends Component {
         limit: ``,
         isHard: false,
         spent: 0,
+        period: `weekly`,
         categories: []
       }
     };
