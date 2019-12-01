@@ -20,7 +20,7 @@ class AppProvider extends Component {
             {
               id: 1,
               name: `Lifestyle`,
-              limit: 1000,
+              limit: 150,
               spent: 0,
               period: `weekly`,
               categories: [
@@ -31,7 +31,7 @@ class AppProvider extends Component {
             {
               id: 2,
               name: `Partying`,
-              limit: 402,
+              limit: 10,
               spent: 5,
               period: `weekly`,
               categories: [
@@ -53,18 +53,6 @@ class AppProvider extends Component {
           ],
           transactions: [
             {
-              emoji: `🍸`,
-              category: `Alcohol`,
-              description: `Rats Bar`,
-              amount: `$50`
-            },
-            {
-              emoji: `🍸`,
-              category: `Alcohol`,
-              description: `Dan Murphy's`,
-              amount: `$320`
-            },
-            {
               emoji: `🍽`,
               category: `Fast food`,
               description: `Waccas`,
@@ -80,12 +68,6 @@ class AppProvider extends Component {
               emoji: `🛍`,
               category: `Shopping`,
               description: `Target`,
-              amount: `$23`
-            },
-            {
-              emoji: `🍔`,
-              category: `Fast food`,
-              description: `Hungry Wac's`,
               amount: `$23`
             },
             {
