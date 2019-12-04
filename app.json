@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Exploring the possibilities of strict budgetting",
+    "githubUrl": "https://github.com/seba1342/pocket"
   }
 }

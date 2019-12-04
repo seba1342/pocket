@@ -41,17 +41,25 @@ class AccountItemComponent extends React.Component {
         >
           <View style={[tw.flex, tw.flexRow, tw.justifyBetween, tw.wFull]}>
             <View style={[tw.flexCol]}>
-              <Text style={[tw.text3xl, tw.mR4]}>{account.name}</Text>
-              <Text style={[tw.textSm, tw.fontLight, tw.mT1, tw.opacity75]}>
+              <Text style={[tw.text3xl, tw.mR4, tw.flex1]}>{account.name}</Text>
+              <Text
+                style={[
+                  tw.textSm,
+                  tw.fontLight,
+                  tw.mT1,
+                  tw.opacity75,
+                  tw.flex1
+                ]}
+              >
                 1040-4000-132
               </Text>
             </View>
             <View style={[tw.flexRow, tw.selfCenter]}>
-              <Text style={[tw.text3xl, tw.fontMedium, tw.mR2]}>
+              <Text style={[tw.text3xl, tw.fontMedium, tw.mR2, tw.flex1]}>
                 ${account.balance}
               </Text>
               {account.pockets && (
-                <View style={[tw.pR5]}>
+                <View style={[tw.pR5, tw.flex1]}>
                   <Icon
                     style={[tw.mT2, tw.mL1]}
                     name={expanded ? `chevron-up` : `chevron-down`}
@@ -119,11 +127,24 @@ class AccountItemComponent extends React.Component {
                           <View>
                             <View style={[tw.flex, tw.flexRow]}>
                               <Text
-                                style={[tw.textLg, tw.text2xl, tw.mT1, tw.pT1]}
+                                style={[
+                                  tw.textLg,
+                                  tw.textXl,
+                                  tw.mT1,
+                                  tw.pT1,
+                                  tw.flex1
+                                ]}
                               >
                                 ${pocket.spent}
                               </Text>
-                              <Text style={[tw.selfEnd, tw.mB2, tw.fontMedium]}>
+                              <Text
+                                style={[
+                                  tw.selfEnd,
+                                  tw.mB2,
+                                  tw.fontMedium,
+                                  tw.flex1
+                                ]}
+                              >
                                 /${pocket.limit}
                               </Text>
                             </View>

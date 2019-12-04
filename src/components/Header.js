@@ -31,6 +31,8 @@ class HeaderComponent extends Component {
           style={[
             tw.wFull,
             tw.absolute,
+            tw.top0,
+            tw.left0,
             tw.pT8,
             tw.pL4,
             tw.mT4,
@@ -50,13 +52,13 @@ class HeaderComponent extends Component {
               </CustomButton>
 
               <View style={[tw.wFull, tw.itemsCenter, tw.justifyCenter]}>
-                <Text style={[tw.text3xl, tw.fontBold]}>
+                <Text style={[tw.text3xl, tw.fontBold, tw.flex1]}>
                   {appContext.headerTitle}
                 </Text>
               </View>
             </>
           ) : (
-            <Text style={[tw.text3xl, tw.fontBold]}>
+            <Text style={[tw.text3xl, tw.fontBold, tw.flex1]}>
               {appContext.headerTitle}
             </Text>
           )}

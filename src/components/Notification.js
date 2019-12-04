@@ -12,7 +12,7 @@ const NotificationComponent = props => {
   return (
     !appContext.notificationHidden && (
       <TouchableOpacity
-        style={[tw.block, tw.relative, tw.z50, tw.wFull, tw.hFull]}
+        style={[tw.block, tw.relative, tw.z50, tw.wFull]}
         onPressIn={() => {
           if (notificationData.navParams) {
             navigation.navigate(
@@ -28,8 +28,6 @@ const NotificationComponent = props => {
       >
         <View
           style={[
-            // tw.bgWhite,
-            // tw.opacity75,
             tw.wFull,
             tw.absolute,
             tw.top0,
