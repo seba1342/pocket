@@ -5,7 +5,10 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 import { tw } from "react-native-tailwindcss";
+import Icon from "react-native-vector-icons/FontAwesome";
+
 import { AppContext } from "../../AppContext";
+
 import CustomButton from "./CustomButton";
 import Notification from "./Notification";
 
@@ -33,22 +36,36 @@ class HeaderComponent extends Component {
             tw.absolute,
             tw.top0,
             tw.left0,
-            tw.pT8,
+            tw.p12,
+            tw.pB6,
             tw.pL4,
-            tw.mT4,
             tw.flex,
-            tw.flexRow
+            tw.flexRow,
+            tw.bgCream
           ]}
         >
           {navigation.state.routeName !== `Index` ? (
             <>
               <CustomButton
-                style={[tw.absolute, tw.pT10, tw.pL4, tw.z50]}
+                style={[
+                  tw.absolute,
+                  tw.pT10,
+                  tw.pL4,
+                  tw.z50,
+                  tw.flex,
+                  tw.flexRow,
+                  tw.itemsCenter
+                ]}
                 onPress={() => {
                   navigation.goBack();
                 }}
               >
-                <Text>{`< Back`}</Text>
+                <Icon
+                  style={[tw.mT5]}
+                  name="chevron-left"
+                  size={20}
+                  color="#000"
+                />
               </CustomButton>
 
               <View style={[tw.wFull, tw.itemsCenter, tw.justifyCenter]}>

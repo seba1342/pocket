@@ -38,33 +38,25 @@ class WaccasViewComponent extends Component {
     }
   });
 
-  constructor() {
-    super();
+  componentWillMount() {}
 
-    this.state = {
-      expanded: -1
-    };
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     const { appContext } = this.props;
 
-    appContext.setHeaderTitle(``);
+    appContext.setHeaderTitle(`WcDonalds`);
   }
 
-  componentDidMount() {}
-
-  // eslint-disable-next-line class-methods-use-this
   purchaseBurger = () => {
     const { appContext } = this.props;
-    const purchaseAmount = 1;
+
+    const purchaseAmount = 2;
     const categoryName = `Fast food`;
-    const purchaseItem = `$1 shitty Wacca's hamburger`;
+    const purchaseItem = `$1 Wacca's hamburger`;
 
     // hardcoded account id = 1, burger costs $1
     appContext.makePurchase(
-      purchaseAmount,
       1,
+      purchaseAmount,
       purchaseItem,
       `🍔`,
       categoryName
@@ -81,6 +73,7 @@ class WaccasViewComponent extends Component {
     }
 
     const account = appContext.accounts[0];
+
     account.pockets.forEach(pocket => {
       pocket.categories.forEach(category => {
         if (category.name === categoryName) {
@@ -88,6 +81,7 @@ class WaccasViewComponent extends Component {
             appContext.accounts[0].id,
             pocket.id
           );
+
           if (pocket.limit - pocketSpend < purchaseAmount) {
             if (pocket.limit - pocketSpend < purchaseAmount) {
               appContext.setNotificationData(
@@ -116,11 +110,13 @@ class WaccasViewComponent extends Component {
 
     return (
       <>
-        <NavigationEvents onDidFocus={() => appContext.setHeaderTitle(``)} />
+        <NavigationEvents
+          onDidFocus={() => appContext.setHeaderTitle(`WcDonalds`)}
+        />
 
         <View
           style={
-            ([tw.wFull, tw.flex, tw.relative, tw.itemsStretch, tw.p4, tw.pT20],
+            ([tw.wFull, tw.flex, tw.relative, tw.itemsStretch, tw.p4, tw.mT32],
             {
               backgroundColor: `#dd1021`
             })
@@ -134,7 +130,7 @@ class WaccasViewComponent extends Component {
               tw.flex,
               tw.flexCol,
               tw.justifyBetween,
-              tw.pT8,
+              tw.pT32,
               tw.pB16
             ]}
           >
@@ -149,6 +145,7 @@ class WaccasViewComponent extends Component {
               ]}
               source={maccasLogoImage}
             />
+
             <Image
               style={{
                 width: 282,
@@ -157,6 +154,7 @@ class WaccasViewComponent extends Component {
               }}
               source={burgerImage}
             />
+
             <View
               style={[
                 tw.bgWhite,
@@ -175,9 +173,11 @@ class WaccasViewComponent extends Component {
               <Text style={[tw.fontBold, tw.text4xl, tw.pY2]}>
                 Today&apos;s deal
               </Text>
+
               <Text style={[tw.fontSemibold, tw.pY2]}>
                 $1 shitty hamburgers!
               </Text>
+
               <TouchableOpacity
                 style={[this.styles.buyNowButton, tw.itemsCenter, tw.pY2]}
                 onPress={this.purchaseBurger}

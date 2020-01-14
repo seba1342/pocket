@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 
 import React, { Component } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import { tw } from "react-native-tailwindcss";
 import { AppContext } from "../../AppContext";

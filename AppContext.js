@@ -14,14 +14,14 @@ class AppProvider extends Component {
       accounts: [
         {
           id: 1,
-          name: `Everyday Account`,
-          balance: 999,
+          name: `Spender`,
+          balance: 875.65,
           pockets: [
             {
               id: 1,
               name: `Lifestyle`,
               limit: 150,
-              spent: 69,
+              spent: 69.1,
               period: `weekly`,
               categories: [
                 { name: `Eating out`, emoji: `💃` },
@@ -31,8 +31,8 @@ class AppProvider extends Component {
             {
               id: 2,
               name: `Transport`,
-              limit: 10,
-              spent: 0,
+              limit: 1000,
+              spent: 317.5,
               period: `weekly`,
               categories: [{ name: `Travel`, emoji: `🚀` }]
             }
@@ -42,7 +42,7 @@ class AppProvider extends Component {
               emoji: `🛍`,
               category: `Shopping`,
               description: `K-mart`,
-              amount: `$23`
+              amount: `$23.1`
             },
             {
               emoji: `🛍`,
@@ -55,6 +55,18 @@ class AppProvider extends Component {
               category: `Eating out`,
               description: `Nando's`,
               amount: `$23`
+            },
+            {
+              emoji: `🚀`,
+              category: `Travel`,
+              description: `Hawaii`,
+              amount: `$300`
+            },
+            {
+              emoji: `🚀`,
+              category: `Travel`,
+              description: `Moon landing`,
+              amount: `$17.5`
             }
           ]
         },
@@ -88,12 +100,11 @@ class AppProvider extends Component {
   getPocketSpent = (accountId, pocketId) => {
     const account = this.getAccountById(accountId);
     let retVal = 0;
+
     account.pockets.forEach(pocket => {
       if (pocket.id === pocketId) {
         pocket.categories.forEach(category => {
           account.transactions.forEach(transaction => {
-            // console.log(transaction);
-            // console.log(category);
             if (transaction.category === category.name) {
               const amountString = transaction.amount;
               const amountStringNoDollarSign = amountString.substring(
@@ -101,38 +112,34 @@ class AppProvider extends Component {
                 amountString.length
               );
               const amountFloat = parseFloat(amountStringNoDollarSign);
+
               retVal += amountFloat;
             }
           });
         });
       }
     });
+
     return retVal;
   };
 
   // returns account, or undefined
   getAccountById = accountId => {
     const { accounts } = this.state;
-    // eslint-disable-next-line consistent-return
     let foundAccount;
+
     accounts.forEach(account => {
       if (account.id === accountId) {
         foundAccount = account;
       }
     });
+
     return foundAccount;
   };
 
   logTransaction = (accountId, categoryName, emoji, description, amount) => {
-    // const account = this.getAccountById(accountId);
-    // const { transactions } = account;
     const { accounts } = this.state;
-
-    // console.log(`transactions`, transactions);
-
     const transaction = { emoji, category: categoryName, description, amount };
-    // transactions.push(transaction);
-    // account.transactions = transactions;
 
     accounts.forEach(account => {
       if (account.id === accountId) {
@@ -151,48 +158,41 @@ class AppProvider extends Component {
     purchaseCategoryName
   ) => {
     const account = this.getAccountById(accountId);
+
     if (purchaseAmount > account.balance) {
       console.log(`total account limit exceeded`);
-      // this.setNotificationData(
-      //   `Transaction Rejected`,
-      //   `Insufficient funds in main account`,
-      //   crewsDenied,
-      //   `Index`
-      // );
+
       return false;
     }
+
     let pocketToSpendFrom;
     let pocketLimitExceeded = false;
+
     account.pockets.forEach(pocket => {
       pocket.categories.forEach(category => {
         if (category.name === purchaseCategoryName) {
           pocketToSpendFrom = pocket;
+
           if (
             pocket.limit - this.getPocketSpent(accountId, pocket.id) <
             purchaseAmount
           ) {
-            console.log(`pocket limit exceeded`);
-            // this.setNotificationData(
-            //   `Transaction Rejected`,
-            //   `Insufficient funds in ${pocket.name} Pocket`,
-            //   crewsDenied,
-            //   `Index`
-            // );
             pocketLimitExceeded = true;
           }
         }
       });
     });
+
     if (pocketLimitExceeded) {
-      console.log(`exiting function cause pocket limit exceeded`);
       return false;
     }
+
     // at this point, the transaction is all good
     account.balance -= purchaseAmount;
     if (pocketToSpendFrom !== undefined) {
       pocketToSpendFrom.spent += purchaseAmount;
     }
-    console.log(`logging transaction`);
+
     this.logTransaction(
       accountId,
       purchaseCategoryName,
@@ -200,13 +200,7 @@ class AppProvider extends Component {
       descriptionParam,
       `$${purchaseAmount}`
     );
-    console.log(`Purchase Successful`);
-    // this.setNotificationData(
-    //   `Transaction Approved`,
-    //   `Purchased ${descriptionParam} for $${purchaseAmount}`,
-    //   crewsAccepted,
-    //   `Index`
-    // );
+
     return true;
   };
 
@@ -246,7 +240,9 @@ class AppProvider extends Component {
 
   createPocket = pocket => {
     const { accounts } = this.state;
+
     accounts[0].pockets.push(pocket);
+
     this.setState({ accounts });
   };
 
@@ -270,6 +266,7 @@ class AppProvider extends Component {
     this.setState({
       notificationHidden: true
     });
+
     clearInterval(this.notificationInterval);
   };
 

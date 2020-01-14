@@ -11,8 +11,6 @@ const PocketComponent = props => {
   const { pocket, account, navigation, appContext } = props;
   const pocketCategories = pocket.categories.map(c => c.name);
 
-  console.log(`pocketCategories`, pocketCategories);
-
   const transactions = account.transactions.filter(transaction =>
     pocketCategories.includes(transaction.category)
   );
@@ -21,13 +19,6 @@ const PocketComponent = props => {
 
   return (
     <View>
-      <View style={[tw.flexRow]}>
-        {/* <Text
-          style={[tw.text3xl, tw.fontBold, tw.capitalize]}
-        >{`${pocket.name}`}</Text> */}
-        {/* <Text style={[tw.text3xl]}> pocket</Text> */}
-      </View>
-
       <View style={[tw.flexCol, tw.justifyBetween, tw.mT6]}>
         <Text style={[tw.text2xl, tw.fontSemibold, tw.mB3]}>Categories:</Text>
         <View style={[tw.flexRow]}>
@@ -37,28 +28,31 @@ const PocketComponent = props => {
           })}
         </View>
       </View>
+
       <View style={[tw.flexRow, tw.justifyBetween, tw.mT6]}>
         <Text style={[tw.text2xl, tw.fontSemibold]}>Spend:</Text>
+
         <View style={[tw.flexRow]}>
           <Text
-            style={[tw.textXl, tw.selfEnd, tw.fontSemibold]}
+            style={[tw.text2xl, tw.selfEnd, tw.fontSemibold]}
           >{`$${pocketSpend}`}</Text>
-          <Text style={[tw.selfEnd]}>{`/$${pocket.limit}`}</Text>
+
+          <Text style={[tw.selfEnd, tw.text2xl]}>{`/$${pocket.limit}`}</Text>
         </View>
       </View>
+
       <View>
         <Text style={[tw.selfEnd]}>{`resets ${pocket.period}`}</Text>
       </View>
+
       <ProgressBar
         limit={pocket.limit}
         spent={pocketSpend}
         limitColor="#222222"
         spentColor="#FFFFFF"
       />
+
       <TransactionList transactions={transactions} navigation={navigation} />
-      {/* <View>
-        <ProgressBar>{`resets ${pocket.period}`}</ProgressBar>
-      </View> */}
     </View>
   );
 };

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { ScrollView, View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableHighlight } from "react-native";
 import { tw } from "react-native-tailwindcss";
 import Icon from "react-native-vector-icons/FontAwesome";
 import ProgressBar from "../ProgessBar";
@@ -27,7 +27,7 @@ class AccountItemComponent extends React.Component {
     const { expanded } = this.state;
 
     return (
-      <TouchableOpacity onPress={this.handleExpand}>
+      <TouchableHighlight onPress={this.handleExpand} underlayColor="#E8D7AD">
         <View
           style={[
             tw.p4,
@@ -41,27 +41,19 @@ class AccountItemComponent extends React.Component {
         >
           <View style={[tw.flex, tw.flexRow, tw.justifyBetween, tw.wFull]}>
             <View style={[tw.flexCol]}>
-              <Text style={[tw.text3xl, tw.mR4, tw.flex1]}>{account.name}</Text>
-              <Text
-                style={[
-                  tw.textSm,
-                  tw.fontLight,
-                  tw.mT1,
-                  tw.opacity75,
-                  tw.flex1
-                ]}
-              >
+              <Text style={[tw.text3xl, tw.mR4]}>{account.name}</Text>
+              <Text style={[tw.textSm, tw.fontLight, tw.mT1, tw.opacity75]}>
                 1040-4000-132
               </Text>
             </View>
             <View style={[tw.flexRow, tw.selfCenter]}>
-              <Text style={[tw.text3xl, tw.fontMedium, tw.mR2, tw.flex1]}>
+              <Text style={[tw.text3xl, tw.fontMedium, tw.mR2]}>
                 ${account.balance}
               </Text>
               {account.pockets && (
-                <View style={[tw.pR5, tw.flex1]}>
+                <View style={[tw.pR2]}>
                   <Icon
-                    style={[tw.mT2, tw.mL1]}
+                    style={[tw.mT3, tw.mL2]}
                     name={expanded ? `chevron-up` : `chevron-down`}
                     size={15}
                     color="#000"
@@ -82,11 +74,12 @@ class AccountItemComponent extends React.Component {
 
               return (
                 <View key={itemKey}>
-                  <TouchableOpacity
+                  <TouchableHighlight
                     key={pocket.id}
                     onPress={() => {
                       navigation.navigate(`Pocket`, { pocket, account });
                     }}
+                    underlayColor="#FFFFFF"
                   >
                     <View style={[tw.mT4]} key={(account.name, pocket.name)}>
                       <View
@@ -125,64 +118,34 @@ class AccountItemComponent extends React.Component {
                             </Text>
                           </View>
                           <View>
-                            <View style={[tw.flex, tw.flexRow]}>
+                            <View
+                              style={[
+                                tw.flex,
+                                tw.flexRow,
+                                tw.justifyEnd,
+                                tw.itemsEnd
+                              ]}
+                            >
                               <Text
                                 style={[
-                                  tw.textLg,
                                   tw.textXl,
                                   tw.mT1,
                                   tw.pT1,
-                                  tw.flex1
+                                  tw.fontMedium
                                 ]}
                               >
                                 ${pocket.spent}
                               </Text>
-                              <Text
-                                style={[
-                                  tw.selfEnd,
-                                  tw.mB2,
-                                  tw.fontMedium,
-                                  tw.flex1
-                                ]}
-                              >
-                                /${pocket.limit}
-                              </Text>
+                              <Text style={[tw.textXl]}>/${pocket.limit}</Text>
                             </View>
-                            <View style={[tw.flex, tw.flexRow]}>
-                              <Text
-                                style={[
-                                  tw.selfEnd,
-                                  tw.mB2,
-                                  tw.fontMedium,
-                                  tw.textXs
-                                ]}
-                              >
+                            <View style={[tw.flex, tw.flexRow, tw.justifyEnd]}>
+                              <Text style={[tw.mB2, tw.textXs, tw.textRight]}>
                                 resets weekly
                               </Text>
                             </View>
                           </View>
                         </View>
 
-                        <View>
-                          {/* <View style={[tw.flex, tw.flexRow]}>
-                            <Text
-                              style={[tw.textLg, tw.text2xl, tw.mT1, tw.pT1]}
-                            >
-                              ${pocketSpend}
-                            </Text>
-                            <Text
-                              style={[
-                                tw.textLg,
-                                tw.pT1,
-                                tw.text2xl,
-                                tw.mT1,
-                                tw.fontMedium
-                              ]}
-                            >
-                              {pocket.name}
-                            </Text>
-                          </View> */}
-                        </View>
                         <ProgressBar
                           limit={pocket.limit}
                           spent={pocketSpend}
@@ -191,38 +154,51 @@ class AccountItemComponent extends React.Component {
                         />
                       </View>
                     </View>
-                  </TouchableOpacity>
+                  </TouchableHighlight>
                 </View>
               );
             })}
+
           {account.pockets && (
-            <TouchableOpacity
+            <TouchableHighlight
               onPress={() => {
                 navigation.navigate(`AddPocket`);
               }}
+              underlayColor="#FFFFFF"
             >
-              <View
-                style={[
-                  tw.p4,
-                  tw.mT3,
-                  tw.w1_2,
-                  tw.bgWhite,
-                  tw.selfEnd,
-                  tw.shadowLg,
-                  tw.roundedFull,
-                  tw.flexRow,
-                  tw.justifyBetween
-                ]}
-              >
-                <Text style={[tw.fontSemibold]}>Add new pocket</Text>
-                <View>
-                  <Icon weight name="plus" size={16} color="#000" />
+              <View style={[tw.flex, tw.flexRow, tw.itemsCenter, tw.mT2]}>
+                {!expanded && (
+                  <View style={[tw.w1_2]}>
+                    <Text style={[tw.textLg]}>
+                      {account.pockets.length} Pockets
+                    </Text>
+                  </View>
+                )}
+
+                <View
+                  style={[
+                    tw.mT2,
+                    tw.p4,
+                    tw.w1_2,
+                    tw.bgWhite,
+                    tw.selfEnd,
+                    tw.shadowLg,
+                    tw.roundedFull,
+                    tw.flexRow,
+                    tw.justifyCenter
+                  ]}
+                >
+                  <Text style={[tw.fontSemibold]}>Add new pocket</Text>
+
+                  <View style={[tw.mL4]}>
+                    <Icon weight name="plus" size={18} color="#000" />
+                  </View>
                 </View>
               </View>
-            </TouchableOpacity>
+            </TouchableHighlight>
           )}
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     );
   }
 }

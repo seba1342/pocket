@@ -30,7 +30,6 @@ class AddPocketViewComponent extends Component {
     super();
 
     this.state = {
-      expanded: -1,
       tokens: [],
       form: {
         name: ``,
@@ -55,14 +54,12 @@ class AddPocketViewComponent extends Component {
 
     const categories = [];
 
-    appContext.categories.forEach((category, index) => {
+    appContext.categories.forEach(category => {
       category.isSelected = false;
       categories.push(category);
     });
 
     form.categories = categories;
-
-    // console.log(form);
 
     this.setState({ form });
   }
@@ -85,7 +82,7 @@ class AddPocketViewComponent extends Component {
 
   handleSubmit = () => {
     const { form } = this.state;
-    const { appContext } = this.props;
+    const { appContext, navigation } = this.props;
 
     const selectedCategories = [];
     form.categories.forEach(category => {
@@ -93,44 +90,34 @@ class AddPocketViewComponent extends Component {
         selectedCategories.push(category);
       }
     });
-    // form.isHard = newIsHard;
-    // this.setState({ form });
+
     form.categories = selectedCategories;
 
     appContext.createPocket(form);
 
-    // const categories = [];
-
-    // appContext.categories.forEach((category, index) => {
-    //   category.isSelected = false;
-    //   categories.push(category);
-    // });
-
-    // form.categories = categories;
-
-    // console.log(form);
-
-    // this.setState({ form });
+    navigation.navigate(`Index`);
   };
 
   setCategorySelected = index => {
     const { categories } = this.state.form;
+
     categories[index].isSelected = !categories[index].isSelected;
+
     this.setState({ categories });
   };
 
   handleTextChange = (key, value) => {
     const { form } = this.state;
+
     form[key] = value;
     form.categories = this.state.form.categories;
+
     this.setState({ form });
   };
 
   render() {
-    const { appContext, navigation } = this.props;
+    const { appContext } = this.props;
     const { form } = this.state;
-
-    // const { pocket, account } = navigation.state.params;
 
     return (
       <>
@@ -154,18 +141,22 @@ class AddPocketViewComponent extends Component {
             <Text style={[tw.fontSemibold, tw.textXl, tw.mB3]}>
               Pocket name
             </Text>
+
             <TextInput
               style={[tw.roundedFull, tw.bgWhite, tw.opacity75, tw.p4, tw.mB2]}
               placeholder="'Partying'"
               onChangeText={text => this.handleTextChange(`name`, text)}
               value={form.name}
             />
+
             <Text
               style={[tw.mL1, tw.fontLight, tw.textXs, tw.opacity75, tw.mB6]}
             >
               Name your pocket something meaningful to you.
             </Text>
+
             <Text style={[tw.fontSemibold, tw.textXl, tw.mB3]}>Categories</Text>
+
             <View
               style={[
                 tw.flex,
@@ -178,14 +169,8 @@ class AddPocketViewComponent extends Component {
               {appContext.categories.map((category, index) => {
                 const categoryIndex = index;
                 if (form.categories && index < form.categories.length) {
-                  // console.log(`form.categories`, form.categories);
-                  // console.log(`category`, category);
-                  // console.log(
-                  //   `category @ index`,
-                  //   index,
-                  //   form.categories[index]
-                  // );
                   category.isSelected = form.categories[index].isSelected;
+
                   return (
                     <TouchableOpacity
                       key={categoryIndex}
@@ -196,9 +181,11 @@ class AddPocketViewComponent extends Component {
                     </TouchableOpacity>
                   );
                 }
+
                 return false;
               })}
             </View>
+
             <Text
               style={[
                 tw.mL1,
@@ -211,9 +198,11 @@ class AddPocketViewComponent extends Component {
             >
               Transactions from these categories will come out of this pocket.
             </Text>
+
             <Text style={[tw.fontSemibold, tw.textXl, tw.mB3, tw.mT4]}>
               Spend limit
             </Text>
+
             <TextInput
               style={[tw.roundedFull, tw.bgWhite, tw.opacity75, tw.p4, tw.mB3]}
               keyboardType="numeric"
@@ -222,12 +211,15 @@ class AddPocketViewComponent extends Component {
               value={form.limit}
               maxLength={10}
             />
+
             <Text
               style={[tw.mL1, tw.fontLight, tw.textXs, tw.opacity75, tw.mB6]}
             >
-              What's your weekly spending limit for this pocket?
+              What&apos;s your weekly spending limit for this pocket?
             </Text>
+
             <Text style={[tw.fontSemibold, tw.textXl, tw.mB3]}>Hard limit</Text>
+
             <View style={[tw.flex, tw.flexRow, tw.itemsCenter]}>
               <Switch
                 onValueChange={() => {
@@ -235,6 +227,7 @@ class AddPocketViewComponent extends Component {
                 }}
                 value={form.isHard}
               />
+
               <View style={[tw.flex, tw.flexRow, tw.mX1]}>
                 <Icon
                   style={[tw.mX2]}
@@ -243,11 +236,13 @@ class AddPocketViewComponent extends Component {
                   size={16}
                   color="#000"
                 />
+
                 <Text style={[tw.fontLight, tw.textXs]}>
                   Will reject transactions if spend limit is exceeded.
                 </Text>
               </View>
             </View>
+
             <View style={[tw.mT8, tw.flex, tw.flexRow, tw.justifyCenter]}>
               <CustomButton
                 onPress={this.handleSubmit}

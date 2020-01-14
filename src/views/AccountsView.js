@@ -3,16 +3,14 @@
 /* eslint-disable react/prop-types */
 
 import React, { Component } from "react";
-import { Image, Text, TouchableOpacity, View, ScrollView } from "react-native";
+import { Text, ScrollView } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import { tw } from "react-native-tailwindcss";
-import Icon from "react-native-vector-icons/FontAwesome";
 
 import { AppContext } from "../../AppContext";
 
 import AccountList from "../components/accounts/AccountList";
 import CustomButton from "../components/CustomButton";
-import Notification from "../components/Notification";
 
 import waccasLogo from "../../assets/maccas.png";
 
@@ -77,10 +75,6 @@ class AccountsViewComponent extends Component {
     });
   };
 
-  // static navigationOptions = {
-  //   title: `Your accounts`
-  // };
-
   render() {
     const { navigation, appContext } = this.props;
     const { accounts } = appContext;
@@ -99,7 +93,7 @@ class AccountsViewComponent extends Component {
             tw.itemsStretch,
             tw.bgCream,
             tw.minHFull,
-            tw.pT24,
+            tw.pT32,
             tw.pB20
           ]}
         >
@@ -108,12 +102,13 @@ class AccountsViewComponent extends Component {
           <CustomButton
             style={[tw.justifyEnd, { position: `absolute`, bottom: 0 }]}
             onPress={() => {
-              appContext.setNotificationData(
-                `$1 Burgers!!!`,
-                `Amazing new deal at Waccas. $1 burger!`,
-                waccasLogo,
-                `Waccas`
-              );
+              // appContext.setNotificationData(
+              //   `$1 Burgers!!!`,
+              //   `Amazing new deal at Waccas. $1 burger!`,
+              //   waccasLogo,
+              //   `Waccas`
+              // );
+              navigation.navigate(`Waccas`);
             }}
           >
             <Text style={[tw.pL4, tw.pB8, tw.opacity25]}>𝒘accas</Text>
